@@ -1,5 +1,5 @@
 ## 0x01. Python - if/else, loops, functions
-0. Positive anything is better than negative nothing mandatory
+#### 0. Positive anything is better than negative nothing mandatory
 This program will assign a random signed number to the variable `number` each time it is executed. Complete the source code in order to print whether the number stored in the variable `number` is positive or negative.
 
   * You can find the source code [here](https://github.com/holbertonschool/0x01.py/blob/master/0-positive_or_negative_py)
@@ -11,7 +11,7 @@ This program will assign a random signed number to the variable `number` each ti
       - if the number is 0: `is zero`
       - if the number is less than 0: `is negative`
     - followed by a new line
-1. The last digit mandatory
+#### 1. The last digit mandatory
 This program will assign a random signed number to the variable `number` each time it is executed. Complete the source code in order to print the last digit of the number stored in the variable `number`.
   - You can find the source code [here](https://github.com/holbertonschool/0x01.py/blob/master/1-last_digit_py)
   - The variable `number` will store a different value every time you will run this program
@@ -24,26 +24,26 @@ This program will assign a random signed number to the variable `number` each ti
       - if the number is 0: the string `and is 0`
       - if the number is less than 6 and not 0: the string `and is less than 6 and not 0`
     - followed by a new line
-2. I sometimes suffer from insomnia. And when I can't fall asleep, I play what I call the alphabet game mandatory
+#### 2. I sometimes suffer from insomnia. And when I can't fall asleep, I play what I call the alphabet game mandatory
 Write a program that prints the alphabet, in lowercase, not followed by a new line.
   - You can only use one `print` function with string format
   - You can only use one loop in your code
   - You are not allowed to store characters in a variable
   - You are not allowed to import any module
-3. When I was having that alphabet soup, I never thought that it would pay off mandatory
+#### 3. When I was having that alphabet soup, I never thought that it would pay off mandatory
 Write a program that prints the alphabet, in lowercase, not followed by a new line.
   - Print all the letters except `q` and `e`
   - You can only use one `print` function with string format
   - You can only use one loop in your code
   - You are not allowed to store characters in a variable
   - You are not allowed to import any module
-4. Hexadecimal printing mandatory
+#### 4. Hexadecimal printing mandatory
 Write a program that prints all numbers from `0` to `98` in decimal and in hexadecimal (as in the following example)
   - You can only use one `print` function with string format
   - You can only use one loop in your code
   - You are not allowed to store numbers or strings in a variable
   - You are not allowed to import any module
-5. 00...99 mandatory
+#### 5. 00...99 mandatory
 Write a program that prints numbers from `0` to `99`.
   - Numbers must be separated by `,`, followed by a space
   - Numbers should be printed in ascending order, with two digits
@@ -52,7 +52,7 @@ Write a program that prints numbers from `0` to `99`.
   - You can only use one loop in your code
   - You are not allowed to store numbers or strings in a variable
   - You are not allowed to import any module
-6. Inventing is a combination of brains and materials. The more brains you use, the less material you need mandatory
+#### 6. Inventing is a combination of brains and materials. The more brains you use, the less material you need mandatory
 Write a program that prints all possible different combinations of two digits.
   - Numbers must be separated by `,`, followed by a space
   - The two digits must be different
@@ -64,7 +64,7 @@ Write a program that prints all possible different combinations of two digits.
   - You can only use no more than 2 loops in your code
   - You are not allowed to store numbers or strings in a variable
   - You are not allowed to import any module
-7. islower mandatory
+#### 7. islower mandatory
 Write a function that checks for lowercase character.
   - Prototype: `def islower(c):`
   - Returns `True` if `c` is lowercase
@@ -73,7 +73,7 @@ Write a function that checks for lowercase character.
   - You are not allowed to use `str.upper()` and `str.isupper()`
   - [Tips: ord()](https://docs.python.org/3.4/library/functions.html?highlight=ord#ord)
 You don't need to understand `__import__`
-8. To uppercase mandatory
+#### 8. To uppercase mandatory
 Write a function that print a string in uppercase followed by a new line.
   - Prototype: `def uppercase(str):`
   - You can only use no more than 2 `print` functions with string format
@@ -82,25 +82,25 @@ Write a function that print a string in uppercase followed by a new line.
   - You are not allowed to use `str.upper()` and `str.isupper()`
   - [Tips: ord()](https://docs.python.org/3.4/library/functions.html?highlight=ord#ord)
 You don't need to understand `__import__`
-9. There are only 3 colors, 10 digits, and 7 notes; its what we do with them that's important mandatory
+#### 9. There are only 3 colors, 10 digits, and 7 notes; its what we do with them that's important mandatory
 Write a function that prints the last digit of a number.
   - Prototype: `def print_last_digit(number):`
   - Returns the value of the last digit
   - You are not allowed to import any module
 You don't need to understand `__import__`
-10. a + b mandatory
+#### 10. a + b mandatory
 Write a function that adds two integers and returns the result.
   - Prototype: `def add(a, b):`
   - Returns the value of a + b
   - You are not allowed to import any module
 You don't need to understand `__import__`
-11. a ^ b mandatory
+#### 11. a ^ b mandatory
 Write a function that computes `a` to the power of `b` and return the value.
   - Prototype: `def pow(a, b):`
   - Returns the value of `a ^ b`
   - You are not allowed to import any module
 You don't need to understand `__import__`
-12. Fizz Buzz mandatory
+#### 12. Fizz Buzz mandatory
 Write a function that prints the numbers from 1 to 100 separated by a space.
   - For multiples of three print `Fizz` instead of the number and for multiples of five print `Buzz`.
   - For numbers which are multiples of both three and five print `FizzBuzz`.
@@ -108,18 +108,18 @@ Write a function that prints the numbers from 1 to 100 separated by a space.
   - Each element should be followed by a space
   - You are not allowed to import any module
 You don't need to understand `__import__`
-13. Smile in the mirror #advanced
+#### 13. Smile in the mirror #advanced
 Write a program that prints the alphabet, in reverse order, alternating lowercase and uppercase (`z` in lowercase and `Y` in uppercase) , not followed by a new line.
   - You can only use one `print` function with string format
   - You can only use one loop in your code
   - You are not allowed to store characters in a variable
   - You are not allowed to import any module
-14. Remove at position #advanced
+#### 14. Remove at position #advanced
 Write a function that creates a copy of the string, removing the character at the position `n` (not the Python way, the "C array index").
   - Prototype: `def remove_char_at(str, n):`
   - You are not allowed to import any module
 You don't need to understand `__import__`
-15. ByteCode -> Python #2 #advanced
+#### 15. ByteCode -> Python #2 #advanced
 
 Write the Python function `def magic_calculation(a, b, c):` that does exactly the same as the following Python bytecode:
 ```asm
