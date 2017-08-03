@@ -11,6 +11,6 @@ if __name__ == "__main__":
         print("Unknown operator. Available operators: +, -, * and /")
         sys.exit(1)
     print("{:s} {:s} {:s} = ".format(a, operator, b), end="")
-    for sym, op in [('+', add),('-', sub),('*', mul), ('/', div)]:
+    for sym, op in [('+', add), ('-', sub), ('*', mul), ('/', div)]:
         if operator == sym:
             print("{:d}".format(op(int(a), int(b))))
