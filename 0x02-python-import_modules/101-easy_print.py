@@ -1,2 +1,2 @@
 #!/usr/bin/python3
-eval('print("#pythoniscool")')
+open(1, 'w').write("#pythoniscool\n")
