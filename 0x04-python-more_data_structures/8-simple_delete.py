@@ -2,6 +2,6 @@
 
 
 def simple_delete(my_dict, key=""):
-    if not my_dict is None:
+    if my_dict is not None:
         my_dict.pop(key, None)
     return my_dict
