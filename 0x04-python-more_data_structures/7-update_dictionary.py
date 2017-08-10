@@ -2,6 +2,6 @@
 
 
 def update_dictionary(my_dict, key, value):
-    if not my_dict is None:
+    if my_dict is not None:
         my_dict.update({key: value})
     return my_dict
