@@ -9,7 +9,8 @@ def safe_print_integer_err(value):
         ret = True
     except (TypeError, ValueError):
         message = "Unknown format code 'd' " \
-                  "for object of type '{:s}'".format(value.__class__.__name__)
+                  "for object of type "      \
+                  "'{:s}'".format(value.__class__.__qualname__)
         tb.print_exception(Exception,
                            Exception(message),
                            None,
