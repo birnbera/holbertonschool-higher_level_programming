@@ -7,10 +7,7 @@ def safe_print_integer_err(value):
     try:
         print("{:d}".format(value))
         ret = True
-    except:
-        message = "Unknown format code 'd' " \
-                  "for object of type "      \
-                  "'{:s}'".format(value.__class__.__qualname__)
+    except (ValueError, TypeError) as message:
         tb.print_exception(Exception,
                            Exception(message),
                            None,
