@@ -7,7 +7,7 @@ def safe_print_integer_err(value):
     try:
         print("{:d}".format(value))
         ret = True
-    except (TypeError, ValueError):
+    except:
         message = "Unknown format code 'd' " \
                   "for object of type "      \
                   "'{:s}'".format(value.__class__.__qualname__)
