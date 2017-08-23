@@ -30,6 +30,7 @@ void print_python_float(PyObject *p)
 	}
 	else
 		printf("  [ERROR] Invalid Float Object\n");
+	fflush(stdout);
 }
 
 /**
@@ -44,7 +45,8 @@ void print_python_bytes(PyObject *p)
 	printf("[.] bytes object info\n");
 	if (p != NULL && PyBytes_Check(p))
 	{
-		PyBytes_AsStringAndSize(p, &bytes_string, &bytes_size);
+		bytes_string = ((PyBytesObject *)p)->ob_sval;
+		bytes_size = ((PyVarObject *)p)->ob_size;
 		printf("  size: %ld\n", bytes_size);
 		printf("  trying string: %s\n", bytes_string);
 		printf("  first %ld bytes:",
@@ -55,6 +57,7 @@ void print_python_bytes(PyObject *p)
 	}
 	else
 		printf("  [ERROR] Invalid Bytes Object\n");
+	fflush(stdout);
 }
 
 /**
@@ -93,4 +96,5 @@ void print_python_list(PyObject *p)
 	}
 	else
 		printf("  [ERROR] Invalid List Object\n");
+	fflush(stdout);
 }
