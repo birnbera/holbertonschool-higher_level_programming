@@ -54,6 +54,8 @@ class SinglyLinkedList:
     def __str__(self):
         head = self.__head
         ret = ""
+        if head is None:
+            return ret
         while head.next_node is not None:
             ret += format(head.data, 'd')
             ret += '\n'
