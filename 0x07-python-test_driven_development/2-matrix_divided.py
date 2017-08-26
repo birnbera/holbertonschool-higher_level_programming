@@ -1,4 +1,8 @@
 #!/usr/bin/python3
+"""Module containing function to divide 2d matrix elementwise.
+
+Not directly executable, but can be imported.
+"""
 
 
 def matrix_divided(matrix, div):
