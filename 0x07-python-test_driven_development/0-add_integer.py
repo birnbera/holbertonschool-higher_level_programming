@@ -29,5 +29,5 @@ def add_integer(a, b):
         raise TypeError('b must be an integer')
     result = a + b
     if result != result or result == float('inf') or result == -float('inf'):
-       raise OverflowError
+        raise OverflowError
     return int(a) + int(b)
