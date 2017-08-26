@@ -4,6 +4,7 @@
 Should not be executed directly, but only imported as a module
 """
 
+
 def print_square(size):
     """Function to print a square with sides `size`.
 

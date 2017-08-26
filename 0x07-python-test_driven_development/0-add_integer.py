@@ -6,6 +6,7 @@ To run doctests:
     $ python3 -m doctest -v ./tests/0-add_integer.txt
 """
 
+
 def add_integer(a, b):
     """Add two integers
 

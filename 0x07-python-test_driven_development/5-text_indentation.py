@@ -5,6 +5,7 @@ Contains no directly executable code. Should be imported
 as a module.
 """
 
+
 def text_indentation(text):
     """Function to print text double-spaced, using `.?:` as
     line separators.
