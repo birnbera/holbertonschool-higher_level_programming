@@ -37,8 +37,8 @@ def matrix_divided(matrix, div):
                             'of integers/floats')
     for row in matrix:
         types_element = map(lambda x: x == x
-                                and x != float('inf')
-                                and x != -float('inf'),
+                            and x != float('inf')
+                            and x != -float('inf'),
                             row)
         if not all(types_element):
             raise OverflowError
