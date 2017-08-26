@@ -21,3 +21,15 @@ b must be an integer
 ... except Exception as e:
 ...     print(e)
 a must be an integer
+>>> a = add_integer(float('nan'), 1) #doctest: +IGNORE_EXCEPTION_DETAIL
+Traceback (most recent call last):
+    ...
+OverflowError:
+>>> add_integer(float('inf'), 1) #doctest: +IGNORE_EXCEPTION_DETAIL
+Traceback (most recent call last):
+    ...
+OverflowError:
+>>> add_integer(-float('inf'), 1) #doctest: +IGNORE_EXCEPTION_DETAIL
+Traceback (most recent call last):
+    ...
+OverflowError:
