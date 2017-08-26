@@ -51,3 +51,14 @@ TypeError: matrix must be a matrix (list of lists) of integers/floats
 >>> print(matrix_divided(matrix, 1e-300)) #doctest: +NORMALIZE_WHITESPACE
 [[9.999999999999999e+299, 1.9999999999999998e+300, 3e+300],
  [3.9999999999999996e+300, 4.9999999999999997e+300, 6e+300]]
+>>> print(matrix_divided()) #doctest: +IGNORE_EXCEPTION_DETAIL
+Traceback (most recent call last):
+    ...
+TypeError:
+>>> print(matrix_divided(matrix)) #doctest: +IGNORE_EXCEPTION_DETAIL
+Traceback (most recent call last):
+    ...
+TypeError:
+>>> print(matrix_divided(matrix, float('inf'))) #doctest: +NORMALIZE_WHITESPACE
+[[0.0, 0.0, 0.0],
+ [0.0, 0.0, 0.0]]

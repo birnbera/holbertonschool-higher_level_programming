@@ -17,24 +17,31 @@ def matrix_divided(matrix, div):
             elements or `div` is neither an integer nor float.
             Also if `matrix` is ragged (not all rows of equal length).
         ZeroDivisionError: If `div` is 0.
+        OverflowError: If `matrix` contains '+/-inf' or 'nan'.
     """
-    if type(div) is not int and type(div) is not float:
+    if not isinstance(div, (float, int)) or div != div:
         raise TypeError('div must be a number')
     if div == 0:
         raise ZeroDivisionError('division by zero')
     if type(matrix) is not list:
         raise TypeError('matrix must be a matrix (list of lists) '
                         'of integers/floats')
-    types_row = map(lambda x: type(x) is list, matrix)
+    types_row = map(lambda x: isinstance(x, list), matrix)
     if not all(types_row):
         raise TypeError('matrix must be a matrix (list of lists) '
                         'of integers/floats')
     for row in matrix:
-        types_element = map(lambda x: type(x) is float or type(x) is int,
-                            row)
+        types_element = map(lambda x: isinstance(x, (float, int)), row)
         if not all(types_element):
             raise TypeError('matrix must be a matrix (list of lists) '
                             'of integers/floats')
+    for row in matrix:
+        types_element = map(lambda x: x == x
+                                and x != float('inf')
+                                and x != -float('inf'),
+                            row)
+        if not all(types_element):
+            raise OverflowError
     sizes = map(lambda x: len(x) == len(matrix[0]), matrix)
     if not all(sizes):
         raise TypeError('Each row of the matrix must have the same size')
