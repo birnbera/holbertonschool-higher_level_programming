@@ -81,6 +81,8 @@ class Rectangle:
         Returns: string contain `width` columns and `height` rows of `#`.
         """
         rect = ""
+        if not (self.width and self.height):
+            return rect
         for i in range(self.height):
             rect += '#'*self.width + '\n'
         return rect[:-1]
