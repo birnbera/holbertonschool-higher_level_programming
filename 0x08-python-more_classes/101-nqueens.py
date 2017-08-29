@@ -137,7 +137,6 @@ def next_candidate(n, s):
 if __name__ == "__main__":
     import sys
 
-    print("running")
     if len(sys.argv) != 2:
         print('Usage: nqueens N')
         exit(1)
