@@ -139,12 +139,15 @@ if __name__ == "__main__":
 
     print("running")
     if len(sys.argv) != 2:
-        sys.exit('Usage: nqueens N')
+        print('Usage: nqueens N')
+        exit(1)
     n = sys.argv[1]
     if not n.isdigit():
-        sys.exit('N must be a number')
+        print('N must be a number')
+        exit(1)
     n = int(n)
     if n < 4:
-        sys.exit('N must be at least 4')
+        print('N must be at least 4')
+        exit(1)
     nqueens(n)
-    sys.exit()
+    exit(0)
