@@ -18,10 +18,11 @@ def text_indentation(text):
     Raises:
         TypeError: If `text` not a string.
     """
+    delims = '.:?'
     if type(text) is not str:
         raise TypeError('text must be a string')
-    seps = '.:?'
-    table = str.maketrans({k: k+'\n' for k in seps})
-    for s in text.translate(table).split('\n'):
-        if s:
-            print(s.strip(), end='\n\n')
+    for c in delims:
+        text = str(c + '\n\n').join(s.strip() for s in text.split(c))
+    print(text, end='')
+    if len(text) > 0 and text[-1] in delims:
+        print('\n')
