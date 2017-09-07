@@ -36,3 +36,11 @@ TypeError:
 >>> my_list = MyList([-1, -9, 10, 35, 0])
 >>> my_list.print_sorted()
 [-9, -1, 0, 10, 35]
+
+>>> my_list = MyList(['d', 'A', '3', ':'])
+>>> my_list.print_sorted()
+['3', ':', 'A', 'd']
+
+>>> my_list = MyList([0.1, 9, -1, 3.35])
+>>> my_list.print_sorted()
+[-1, 0.1, 3.35, 9]
