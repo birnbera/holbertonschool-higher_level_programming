@@ -5,16 +5,24 @@ import os
 import json
 from io import StringIO
 from models.rectangle import Rectangle
+"""Unit tests for Rectangle class"""
 
 
 class TestRectangle(unittest.TestCase):
+    """Subclass of unittest.TestCase to test Rectangle class functionality"""
     def setUp(self):
+        """Redirect stdout to readable buffer to check output of
+        methods relying on print function."""
         sys.stdout = StringIO()
 
     def tearDown(self):
+        """Following test completion reassign true stdout file stream to
+        sys.stdout so printing goes to the screen as before."""
         sys.stdout = sys.__stdout__
 
     def test_id(self):
+        """Test for id property. Set class variable __nb_object to 0 so id
+        values are as expected"""
         Rectangle._Base__nb_object = 0
         r1 = Rectangle(10, 2)
         r2 = Rectangle(2, 10)
@@ -24,6 +32,8 @@ class TestRectangle(unittest.TestCase):
         self.assertEqual(r3.id, 12)
 
     def test_raise(self):
+        """Test that instances raise correct errors and messages for incorrect
+        input values."""
         Rectangle._Base__nb_object = 0
         with self.assertRaises(TypeError, msg="height must be an integer"):
             Rectangle(10, "2")
@@ -35,6 +45,7 @@ class TestRectangle(unittest.TestCase):
             Rectangle(10, 2, 3, -1)
 
     def test_area(self):
+        """Test that area method returns correct values"""
         Rectangle._Base__nb_object = 0
         r1 = Rectangle(3, 2)
         r2 = Rectangle(2, 10)
@@ -44,6 +55,12 @@ class TestRectangle(unittest.TestCase):
         self.assertEqual(r3.area(), 56)
 
     def test_display(self):
+        """Test that display method prints correct output. Relies on
+        redirecting stdout to StringIO instance for comparing with
+        expected output. Wraps calls to display and comparison with
+        stdout in try/finally in order to reset stdout to beginning of
+        stream even if the test fails.
+        """
         Rectangle._Base__nb_object = 0
         r1 = Rectangle(4, 6)
         r1_out = "####\n" \
@@ -69,6 +86,7 @@ class TestRectangle(unittest.TestCase):
             sys.stdout.truncate(0)
 
     def test_str(self):
+        """Test that __str__ magic method produces correct output."""
         Rectangle._Base__nb_object = 0
         r1 = Rectangle(4, 6, 2, 1, 12)
         r2 = Rectangle(5, 5, 1)
@@ -76,6 +94,10 @@ class TestRectangle(unittest.TestCase):
         self.assertEqual(r2.__str__(), "[Rectangle] (1) 1/0 - 5/5")
 
     def test_display_offset(self):
+        """Test that `display()` method correctly works with offset values.
+        As with `test_display`, `test_display_offset` relies on stdout being
+        redirected to a StringIO instance. See `test_display` for details.
+        """
         Rectangle._Base__nb_object = 0
         r1 = Rectangle(2, 3, 2, 2)
         r1_out = "\n" \
@@ -100,6 +122,7 @@ class TestRectangle(unittest.TestCase):
             sys.stdout.truncate(0)
 
     def test_update1(self):
+        """Test that `update()` method works with *args unpacking"""
         Rectangle._Base__nb_object = 0
         r1 = Rectangle(10, 10, 10, 10)
         self.assertEqual(r1.__str__(), "[Rectangle] (1) 10/10 - 10/10")
@@ -115,6 +138,7 @@ class TestRectangle(unittest.TestCase):
         self.assertEqual(r1.__str__(), "[Rectangle] (89) 4/5 - 2/3")
 
     def test_update2(self):
+        """Test that `update()` method works with **kwargs unpacking."""
         Rectangle._Base__nb_object = 0
         r1 = Rectangle(10, 10, 10, 10)
         self.assertEqual(r1.__str__(), "[Rectangle] (1) 10/10 - 10/10")
@@ -128,6 +152,12 @@ class TestRectangle(unittest.TestCase):
         self.assertEqual(r1.__str__(), "[Rectangle] (89) 1/3 - 4/2")
 
     def test_to_dict(self):
+        """Test that `to_dictionary()` method produces valid dictionary
+        representation of Rectangle instance. Converts to dictionary and
+        updates distinct instance to those values and compares the two
+        resulting objects to show that they have the same attributes but
+        are not identical objects.
+        """
         Rectangle._Base__nb_object = 0
         r1 = Rectangle(10, 2, 1, 9)
         self.assertEqual(r1.__str__(), "[Rectangle] (1) 1/9 - 10/2")
@@ -142,6 +172,10 @@ class TestRectangle(unittest.TestCase):
         self.assertNotEqual(r1, r2)
 
     def test_save_to_file(self):
+        """Test that `save_to_file()` method of Rectangle instance
+        can be used to directly serialize and write to a file. Removes
+        file after test if test was able to write to disk.
+        """
         Rectangle._Base__nb_object = 0
         r1 = Rectangle(10, 7, 2, 8)
         r2 = Rectangle(2, 4)

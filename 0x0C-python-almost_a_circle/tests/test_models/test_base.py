@@ -3,23 +3,30 @@ import unittest
 import sys
 from io import StringIO
 from models.base import Base
-try:
+try:  # Uses Rectangle instance for `test_to_json_string`
     from models.rectangle import Rectangle
-except ImportError:
+except ImportError:  # Skip test if Rectangle unavailable or not implemented
     DONT_RUN = True
 else:
     DONT_RUN = False
 import json
+"""Unit tests for Base class"""
 
 
 class TestBase(unittest.TestCase):
+    """Subclass of unittest.TestCase to test Base class functionality"""
     def setUp(self):
+        """Redirect stdout to readable buffer to check output of
+        methods relying on print function."""
         sys.stdout = StringIO()
 
     def tearDown(self):
+        """Following test completion reassign true stdout file stream to
+        sys.stdout so printing goes to the screen as before."""
         sys.stdout = sys.__stdout__
 
     def test_id(self):
+        """Test for id property"""
         self.b1 = Base()
         self.b2 = Base()
         self.b3 = Base()
@@ -32,8 +39,12 @@ class TestBase(unittest.TestCase):
         self.assertEqual(self.b4.id, 12)
         self.assertEqual(self.b5.id, 4)
 
-    @unittest.skipIf(DONT_RUN == True, "Rectangle class not yet implemented")
+    @unittest.skipIf(DONT_RUN is True, "Rectangle class not yet implemented")
     def test_to_json_string(self):
+        """Test for conversion of Base subclasses to json representation.
+        Assumes that subclasses have implemented `to_dictionary()` method.
+        If Rectangle class is not available do not run this test.
+        """
         self.assertEqual(Base.to_json_string(None), "[]")
         self.assertEqual(Base.to_json_string([]), "[]")
         with self.subTest():

@@ -3,16 +3,23 @@ import unittest
 import sys
 from io import StringIO
 from models.square import Square
+"""Unit tests for Square class"""
 
 
 class TestSquare(unittest.TestCase):
+    """Subclass of unittest.TestCase to test Square class functionality"""
     def setUp(self):
+        """Redirect stdout to readable buffer to check output of
+        methods relying on print function."""
         sys.stdout = StringIO()
 
     def tearDown(self):
+        """Following test completion reassign true stdout file stream to
+        sys.stdout so printing goes to the screen as before."""
         sys.stdout = sys.__stdout__
 
     def test_str(self):
+        """Test that __str__ magic method produces correct output."""
         Square._Base__nb_object = 0
         s1 = Square(5)
         s2 = Square(2, 2)
@@ -22,6 +29,7 @@ class TestSquare(unittest.TestCase):
         self.assertEqual(s3.__str__(), "[Square] (3) 1/3 - 3")
 
     def test_area(self):
+        """Test that area method returns correct values"""
         Square._Base__nb_object = 0
         s1 = Square(5)
         s2 = Square(2, 2)
@@ -31,6 +39,13 @@ class TestSquare(unittest.TestCase):
         self.assertEqual(s3.area(), 9)
 
     def test_display_offset(self):
+        """Test that the `display()` method prints correct output and
+        uses offset values when specified. Relies on redirecting stdout
+        to StringIO instance for comparing with expected output.
+        Wraps calls to display and comparison with stdout in try/finally
+        in order to reset stdout to beginning of stream even if the test
+        fails.
+        """
         Square._Base__nb_object = 0
         s1 = Square(5)
         s1_out = "#####\n" \
@@ -53,17 +68,20 @@ class TestSquare(unittest.TestCase):
             s1.display()
             self.assertEqual(sys.stdout.getvalue(), s1_out)
         finally:
-            sys.stdout.seek(0); sys.stdout.truncate(0)
+            sys.stdout.seek(0)
+            sys.stdout.truncate(0)
         try:
             s2.display()
             self.assertEqual(sys.stdout.getvalue(), s2_out)
         finally:
-            sys.stdout.seek(0); sys.stdout.truncate(0)
+            sys.stdout.seek(0)
+            sys.stdout.truncate(0)
         try:
             s3.display()
             self.assertEqual(sys.stdout.getvalue(), s3_out)
         finally:
-            sys.stdout.seek(0); sys.stdout.truncate(0)
+            sys.stdout.seek(0)
+            sys.stdout.truncate(0)
 
         def test_size(self):
             s1 = Square(5)
@@ -94,6 +112,12 @@ class TestSquare(unittest.TestCase):
             self.assertEqual(s1.__str__(), "[Square] (89) 12/1 - 7")
 
         def test_to_dict(self):
+            """Test that `to_dictionary()` method produces valid dictionary
+            representation of Square instance. Converts to dictionary and
+            updates distinct instance to those values and compares the two
+            resulting objects to show that they have the same attributes but
+            are not identical objects.
+            """
             s1 = Square(10, 2, 1)
             self.assertEqual(s1.__str__(), "[Square] (1) 2/1 - 10")
             self.assertEqual(s1.to_dictionary(), {'id': 1, 'x': 2,
