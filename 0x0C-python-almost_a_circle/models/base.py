@@ -55,7 +55,7 @@ class Base:
         Raises: Any errors encounterd during serialization.
         """
         if not list_dictionaries or len(list_dictionaries) == 0:
-            return json.dumps([])
+            list_dictionaries = []
         return json.dumps(list_dictionaries)
 
     @staticmethod
@@ -84,7 +84,7 @@ class Base:
 
         Raises: Any errors encountered during serialization and I/O.
         """
-        with open("{:s}.json".format(cls.__name__), 'w') as jf:
+        with open("{}.json".format(cls.__name__), 'w') as jf:
             jf.write(cls.to_json_string([obj.to_dictionary() for
                                          obj in list_objs]))
 
