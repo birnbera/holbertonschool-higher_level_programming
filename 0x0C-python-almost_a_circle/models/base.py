@@ -1,6 +1,6 @@
 #!/usr/bin/python3
-import json
 """Module to represent Base object to be extended by Square and Rectangle"""
+import json
 
 
 class Base:

@@ -1,4 +1,5 @@
 #!/usr/bin/python3
+"""Unit tests for Base class"""
 import unittest
 import sys
 from io import StringIO
@@ -10,7 +11,6 @@ except ImportError:  # Skip test if Rectangle unavailable or not implemented
 else:
     DONT_RUN = False
 import json
-"""Unit tests for Base class"""
 
 
 class TestBase(unittest.TestCase):

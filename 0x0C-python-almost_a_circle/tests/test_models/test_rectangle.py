@@ -1,11 +1,11 @@
 #!/usr/bin/python3
+"""Unit tests for Rectangle class"""
 import unittest
 import sys
 import os
 import json
 from io import StringIO
 from models.rectangle import Rectangle
-"""Unit tests for Rectangle class"""
 
 
 class TestRectangle(unittest.TestCase):

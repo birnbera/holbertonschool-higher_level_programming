@@ -1,9 +1,9 @@
 #!/usr/bin/python3
+"""Unit tests for Square class"""
 import unittest
 import sys
 from io import StringIO
 from models.square import Square
-"""Unit tests for Square class"""
 
 
 class TestSquare(unittest.TestCase):

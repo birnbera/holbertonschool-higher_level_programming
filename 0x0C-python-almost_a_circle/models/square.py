@@ -1,6 +1,6 @@
 #!/usr/bin/python3
-from models.rectangle import Rectangle
 """Module containing Square class"""
+from models.rectangle import Rectangle
 
 
 class Square(Rectangle):
