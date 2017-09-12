@@ -55,7 +55,7 @@ class Base:
         Raises: Any errors encounterd during serialization.
         """
         if list_dictionaries == [] or list_dictionaries is None:
-            return "[]"
+            return json.dumps([])
         return json.dumps(list_dictionaries)
 
     @staticmethod
