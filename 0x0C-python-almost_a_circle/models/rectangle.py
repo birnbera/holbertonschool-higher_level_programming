@@ -168,8 +168,8 @@ class Rectangle(Base):
             [Rectangle] (6) 0/3 - 6/4
         """
         attrs = ["id", "width", "height", "x", "y"]
-        for i, arg in enumerate(args[:len(attrs)]):
-            setattr(self, attrs[i], arg)
+        for attr, arg in zip(attrs, args):
+            setattr(self, attr, arg)
         for k, v in kwargs.items():
             setattr(self, k, v)
 

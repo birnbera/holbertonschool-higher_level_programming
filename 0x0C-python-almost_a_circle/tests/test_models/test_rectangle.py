@@ -197,6 +197,18 @@ class TestRectangle(unittest.TestCase):
         self.assertEqual(r1.__str__(), "[Rectangle] (89) 4/10 - 2/3")
         r1.update(89, 2, 3, 4, 5)
         self.assertEqual(r1.__str__(), "[Rectangle] (89) 4/5 - 2/3")
+        with self.assertRaises(TypeError):
+            r1.update(1, 1.1, 1, 1, 1)
+            r1.update(1, "a")
+            r1.update(1, 1, 1.0)
+            r1.update(1, 1, "a")
+            r1.update(1, 1, 1, [], 0)
+            r1.update(1, 1, 1, 0, [])
+        with self.assertRaises(ValueError):
+            r1.update(1, 0)
+            r1.update(1, 1, 0)
+            r1.update(1, 1, 1, -1, 1)
+            r1.update(1, 1, 1, 1, -1)
 
     def test_update2(self):
         """Test that `update()` method works with **kwargs unpacking."""
@@ -211,6 +223,10 @@ class TestRectangle(unittest.TestCase):
         self.assertEqual(r1.__str__(), "[Rectangle] (89) 3/1 - 2/1")
         r1.update(x=1, height=2, y=3, width=4)
         self.assertEqual(r1.__str__(), "[Rectangle] (89) 1/3 - 4/2")
+        r1.update(**{'wow': 3, 'hey': 'wow'})
+        self.assertEqual(r1.__str__(), "[Rectangle] (89) 1/3 - 4/2")
+        r1.update({'x': 10, 'height': 8})
+        self.assertIs(type(r1.id), dict)
 
     def test_to_dict(self):
         """Test that `to_dictionary()` method produces valid dictionary
