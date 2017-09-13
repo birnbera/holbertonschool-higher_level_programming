@@ -67,7 +67,7 @@ class Square(Rectangle):
             [Square] (6) 0/3 - 4
         """
         attrs = ["id", "size", "x", "y"]
-        for attr, arg in zip(attrs, args)
+        for attr, arg in zip(attrs, args):
             setattr(self, attr, arg)
         for k, v in kwargs.items():
             setattr(self, k, v)

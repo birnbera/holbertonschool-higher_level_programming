@@ -4,7 +4,9 @@ import unittest
 import sys
 from io import StringIO
 from models.square import Square
+from models.square import __doc__ as module_doc
 from models.base import Base
+
 
 class TestSquare(unittest.TestCase):
     """Subclass of unittest.TestCase to test Square class functionality"""
@@ -17,6 +19,55 @@ class TestSquare(unittest.TestCase):
         """Following test completion reassign true stdout file stream to
         sys.stdout so printing goes to the screen as before."""
         sys.stdout = sys.__stdout__
+
+    def test_docstrings(self):
+        """Test for existence of docstrings"""
+        self.assertIsNotNone(module_doc)
+        self.assertIsNotNone(Square.__doc__)
+        self.assertIs(hasattr(Square, "__init__"), True)
+        self.assertIsNotNone(Square.__init__.__doc__)
+        self.assertIs(hasattr(Square, "size"), True)
+        self.assertIsNotNone(Square.size.__doc__)
+        self.assertIs(hasattr(Square, "__str__"), True)
+        self.assertIsNotNone(Square.__str__.__doc__)
+        self.assertIs(hasattr(Square, "update"), True)
+        self.assertIsNotNone(Square.update.__doc__)
+        self.assertIs(hasattr(Square, "to_dictionary"), True)
+        self.assertIsNotNone(Square.to_dictionary.__doc__)
+
+    def test_args_cnt(self):
+        """Test correct number and type of arguments"""
+        Base._Base__nb_object = 0
+        with self.assertRaises(TypeError):
+            Square()
+            Square(x=1, y=1)
+
+    def test_raise(self):
+        """Test that instances raise correct errors and messages for incorrect
+        input values."""
+        with self.assertRaises(TypeError, msg="width must be an integer"):
+            Square("10")
+            Square(10.0)
+            Square(True)
+            Square(-10.3)
+            Square([3])
+        with self.assertRaises(ValueError, msg="width must be > 0"):
+            Square(-10)
+            Square(0)
+        with self.assertRaises(TypeError, msg="x must be an integer"):
+            Square(10, {})
+            Square(10, 1.1)
+            Square(10, False)
+            Square(10, x=float(0))
+        with self.assertRaises(TypeError, msg="y must be an integer"):
+            Square(10, 2, {})
+            Square(10, 2, 1.1)
+            Square(10, 2, False)
+            Square(10, 2, y=float(0))
+        with self.assertRaises(ValueError, msg="x must be >= 0"):
+            Square(10, -1, 3)
+        with self.assertRaises(ValueError, msg="y must be >= 0"):
+            Square(10, 2, -1)
 
     def test_str(self):
         """Test that __str__ magic method produces correct output."""
@@ -34,9 +85,11 @@ class TestSquare(unittest.TestCase):
         s1 = Square(5)
         s2 = Square(2, 2)
         s3 = Square(3, 1, 3)
+        s4 = Square(99999999999)
         self.assertEqual(s1.area(), 25)
         self.assertEqual(s2.area(), 4)
         self.assertEqual(s3.area(), 9)
+        self.assertEqual(s4.area(), 99999999999 ** 2)
 
     def test_display_offset(self):
         """Test that the `display()` method prints correct output and
@@ -94,6 +147,9 @@ class TestSquare(unittest.TestCase):
         self.assertEqual(s1.__str__(), "[Square] (1) 0/0 - 10")
         with self.assertRaises(TypeError, msg="width must be an integer"):
             s1.size = "9"
+            s1.size = 1.1
+        with self.assertRaises(ValueError, msg="width must be > 0"):
+            s1.size = 0
 
     def test_update_args_kwargs(self):
         """Test that `update()` method correctly handles *args and **kwargs"""
@@ -114,6 +170,19 @@ class TestSquare(unittest.TestCase):
         self.assertEqual(s1.__str__(), "[Square] (1) 12/1 - 7")
         s1.update(size=7, id=89, y=1)
         self.assertEqual(s1.__str__(), "[Square] (89) 12/1 - 7")
+        with self.assertRaises(TypeError):
+            s1.update(1, 1.1, 1, 1)
+            s1.update(1, "a")
+            s1.update(1, 1, [], 0)
+            s1.update(1, 1, 0, [])
+        with self.assertRaises(ValueError):
+            s1.update(1, 0)
+            s1.update(1, 1, -1, 1)
+            s1.update(1, 1, 1, -1)
+        s1.update(**{'wow': 3, 'hey': 'wow', 'id': 89})
+        self.assertEqual(s1.__str__(), "[Square] (89) 12/1 - 7")
+        s1.update({'x': 10, 'height': 8})
+        self.assertIs(type(s1.id), dict)
 
     def test_to_dict(self):
         """Test that `to_dictionary()` method produces valid dictionary

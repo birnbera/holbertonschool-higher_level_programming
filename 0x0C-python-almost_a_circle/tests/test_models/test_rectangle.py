@@ -57,14 +57,12 @@ class TestRectangle(unittest.TestCase):
         r6 = Rectangle(2, 2)
         self.assertEqual(r6.id, 1)
 
-    def test_args(self):
+    def test_args_cnt(self):
         """Test correct number and type of arguments"""
         Base._Base__nb_object = 0
         with self.assertRaises(TypeError):
             Rectangle(1)
-        with self.assertRaises(TypeError):
             Rectangle()
-        with self.assertRaises(TypeError):
             Rectangle(x=1, y=1)
 
     def test_raise(self):
