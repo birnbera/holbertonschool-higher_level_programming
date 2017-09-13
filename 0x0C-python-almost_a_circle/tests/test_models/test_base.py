@@ -39,7 +39,6 @@ class TestBase(unittest.TestCase):
         self.assertEqual(self.b4.id, 12)
         self.assertEqual(self.b5.id, 4)
 
-    @unittest.skipIf(DONT_RUN is True, "Rectangle class not yet implemented")
     def test_to_json_string(self):
         """Test for conversion of Base subclasses to json representation.
         Assumes that subclasses have implemented `to_dictionary()` method.
