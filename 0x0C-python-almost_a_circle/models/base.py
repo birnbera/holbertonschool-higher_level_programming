@@ -37,7 +37,12 @@ class Base:
         Raises: Errors delegated to subclasses of Base which call this
             method.
         """
-        c = cls(1, 1)
+        if cls.__name__ == "Rectangle":
+            c = cls(1, 1)
+        else if cls.__name__ == "Square":
+            c = cls(1)
+        else:
+            c = cls()
         if not hasattr(dictionary, "keys") or not callable(dictionary.keys):
             dictionary = {}
         c.update(**dictionary)
