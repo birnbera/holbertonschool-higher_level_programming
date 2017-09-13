@@ -39,7 +39,7 @@ class Base:
         """
         if cls.__name__ == "Rectangle":
             c = cls(1, 1)
-        else if cls.__name__ == "Square":
+        elif cls.__name__ == "Square":
             c = cls(1)
         else:
             c = cls()
