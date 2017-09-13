@@ -38,6 +38,8 @@ class Base:
             method.
         """
         c = cls(1, 1)
+        if type(dictionary) is not dict:
+            dictionary = {}
         c.update(**dictionary)
         return c
 
@@ -69,7 +71,7 @@ class Base:
 
         Raises: Any errors encountered during serialization.
         """
-        if json_string == "" or type(json_string) is None:
+        if json_string == "" or json_string is None:
             return []
         return json.loads(json_string)
 
@@ -84,6 +86,8 @@ class Base:
 
         Raises: Any errors encountered during serialization and I/O.
         """
+        if not list_objs:
+            list_objs = []
         with open("{}.json".format(cls.__name__), 'w') as jf:
             jf.write(cls.to_json_string([obj.to_dictionary() for
                                          obj in list_objs]))
