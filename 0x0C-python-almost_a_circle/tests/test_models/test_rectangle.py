@@ -6,7 +6,8 @@ import os
 import json
 from io import StringIO
 from models.rectangle import Rectangle
-
+from models.rectangle import __doc__ as module_doc
+from models.base import Base
 
 class TestRectangle(unittest.TestCase):
     """Subclass of unittest.TestCase to test Rectangle class functionality"""
@@ -20,39 +21,99 @@ class TestRectangle(unittest.TestCase):
         sys.stdout so printing goes to the screen as before."""
         sys.stdout = sys.__stdout__
 
+    def test_docstrings(self):
+        """Test for existence of docstrings"""
+        self.assertIsNotNone(module_doc)
+        self.assertIsNotNone(Rectangle.__doc__)
+        self.assertIs(hasattr(Rectangle, "__init__"), True)
+        self.assertIsNotNone(Rectangle.__init__.__doc__)
+        self.assertIs(hasattr(Rectangle, "width"), True)
+        self.assertIsNotNone(Rectangle.width.__doc__)
+        self.assertIs(hasattr(Rectangle, "to_json_string"), True)
+        self.assertIsNotNone(Rectangle.to_json_string.__doc__)
+        self.assertIs(hasattr(Rectangle, "from_json_string"), True)
+        self.assertIsNotNone(Rectangle.from_json_string.__doc__)
+        self.assertIs(hasattr(Rectangle, "save_to_file"), True)
+        self.assertIsNotNone(Rectangle.save_to_file.__doc__)
+        self.assertIs(hasattr(Rectangle, "load_from_file"), True)
+        self.assertIsNotNone(Rectangle.load_from_file.__doc__)
+
     def test_id(self):
         """Test for id property. Set class variable __nb_object to 0 so id
         values are as expected"""
-        Rectangle._Base__nb_object = 0
+        Base._Base__nb_object = 0
         r1 = Rectangle(10, 2)
         r2 = Rectangle(2, 10)
         r3 = Rectangle(10, 2, 0, 0, 12)
+        r4 = Rectangle(1, 1, id="9")
+        r5 = Rectangle(1, 1)
         self.assertEqual(r1.id, 1)
         self.assertEqual(r2.id, 2)
         self.assertEqual(r3.id, 12)
+        self.assertEqual(r4.id, "9")
+        self.assertEqual(r5.id, 3)
+        Base._Base__nb_object = 0
+        self.assertEqual(r5.id, 3)
+        r6 = Rectangle(2, 2)
+        self.assertEqual(r6.id, 1)
+
+    def test_args(self):
+        """Test correct number and type of arguments"""
+        Base._Base__nb_object = 0
+        with self.assertRaises(TypeError):
+            Rectangle(1)
+        with self.assertRaises(TypeError):
+            Rectangle()
+        with self.assertRaises(TypeError):
+            Rectangle(x=1, y=1)
 
     def test_raise(self):
         """Test that instances raise correct errors and messages for incorrect
         input values."""
-        Rectangle._Base__nb_object = 0
+        Base._Base__nb_object = 0
         with self.assertRaises(TypeError, msg="height must be an integer"):
             Rectangle(10, "2")
+            Rectangle(10, 2.0)
+            Rectangle(10, True)
+            Rectangle(10, -2.4)
+        with self.assertRaises(TypeError, msg="width must be an integer"):
+            Rectangle("10", "2")
+            Rectangle(10.0, 2)
+            Rectangle(True, 2)
+            Rectangle(-10.3, 2)
+            Rectangle([3], 3)
         with self.assertRaises(ValueError, msg="width must be > 0"):
             Rectangle(-10, 2)
+            Rectangle(0, 2)
+        with self.assertRaises(ValueError, msg="height must be > 0"):
+            Rectangle(2, 0)
+            Rectangle(2, -10)
         with self.assertRaises(TypeError, msg="x must be an integer"):
             Rectangle(10, 2, {})
+            Rectangle(10, 2, 1.1)
+            Rectangle(10, 2, False)
+            Rectangle(10, 2, x=float(0))
+        with self.assertRaises(TypeError, msg="y must be an integer"):
+            Rectangle(10, 2, 1, {})
+            Rectangle(10, 2, 1, 1.1)
+            Rectangle(10, 2, 0, False)
+            Rectangle(10, 2, y=float(0))
+        with self.assertRaises(ValueError, msg="x must be >= 0"):
+            Rectangle(10, 2, -1, 3)
         with self.assertRaises(ValueError, msg="y must be >= 0"):
             Rectangle(10, 2, 3, -1)
 
     def test_area(self):
         """Test that area method returns correct values"""
-        Rectangle._Base__nb_object = 0
+        Base._Base__nb_object = 0
         r1 = Rectangle(3, 2)
         r2 = Rectangle(2, 10)
         r3 = Rectangle(8, 7, 0, 0, 12)
+        r4 = Rectangle(99999999999, 8888888888)
         self.assertEqual(r1.area(), 6)
         self.assertEqual(r2.area(), 20)
         self.assertEqual(r3.area(), 56)
+        self.assertEqual(r4.area(), 99999999999 * 8888888888)
 
     def test_display(self):
         """Test that display method prints correct output. Relies on
@@ -61,7 +122,7 @@ class TestRectangle(unittest.TestCase):
         stdout in try/finally in order to reset stdout to beginning of
         stream even if the test fails.
         """
-        Rectangle._Base__nb_object = 0
+        Base._Base__nb_object = 0
         r1 = Rectangle(4, 6)
         r1_out = "####\n" \
                  "####\n" \
@@ -87,7 +148,7 @@ class TestRectangle(unittest.TestCase):
 
     def test_str(self):
         """Test that __str__ magic method produces correct output."""
-        Rectangle._Base__nb_object = 0
+        Base._Base__nb_object = 0
         r1 = Rectangle(4, 6, 2, 1, 12)
         r2 = Rectangle(5, 5, 1)
         self.assertEqual(r1.__str__(), "[Rectangle] (12) 2/1 - 4/6")
@@ -98,7 +159,7 @@ class TestRectangle(unittest.TestCase):
         As with `test_display`, `test_display_offset` relies on stdout being
         redirected to a StringIO instance. See `test_display` for details.
         """
-        Rectangle._Base__nb_object = 0
+        Base._Base__nb_object = 0
         r1 = Rectangle(2, 3, 2, 2)
         r1_out = "\n" \
                  "\n" \
@@ -123,7 +184,7 @@ class TestRectangle(unittest.TestCase):
 
     def test_update1(self):
         """Test that `update()` method works with *args unpacking"""
-        Rectangle._Base__nb_object = 0
+        Base._Base__nb_object = 0
         r1 = Rectangle(10, 10, 10, 10)
         self.assertEqual(r1.__str__(), "[Rectangle] (1) 10/10 - 10/10")
         r1.update(89)
@@ -139,7 +200,7 @@ class TestRectangle(unittest.TestCase):
 
     def test_update2(self):
         """Test that `update()` method works with **kwargs unpacking."""
-        Rectangle._Base__nb_object = 0
+        Base._Base__nb_object = 0
         r1 = Rectangle(10, 10, 10, 10)
         self.assertEqual(r1.__str__(), "[Rectangle] (1) 10/10 - 10/10")
         r1.update(height=1)
@@ -158,7 +219,7 @@ class TestRectangle(unittest.TestCase):
         resulting objects to show that they have the same attributes but
         are not identical objects.
         """
-        Rectangle._Base__nb_object = 0
+        Base._Base__nb_object = 0
         r1 = Rectangle(10, 2, 1, 9)
         self.assertEqual(r1.__str__(), "[Rectangle] (1) 1/9 - 10/2")
         self.assertEqual(r1.to_dictionary(), {'x': 1, 'y': 9,
@@ -176,7 +237,7 @@ class TestRectangle(unittest.TestCase):
         can be used to directly serialize and write to a file. Removes
         file after test if test was able to write to disk.
         """
-        Rectangle._Base__nb_object = 0
+        Base._Base__nb_object = 0
         r1 = Rectangle(10, 7, 2, 8)
         r2 = Rectangle(2, 4)
         Rectangle.save_to_file([r1, r2])

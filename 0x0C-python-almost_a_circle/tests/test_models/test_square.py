@@ -4,7 +4,7 @@ import unittest
 import sys
 from io import StringIO
 from models.square import Square
-
+from models.base import Base
 
 class TestSquare(unittest.TestCase):
     """Subclass of unittest.TestCase to test Square class functionality"""
@@ -20,7 +20,7 @@ class TestSquare(unittest.TestCase):
 
     def test_str(self):
         """Test that __str__ magic method produces correct output."""
-        Square._Base__nb_object = 0
+        Base._Base__nb_object = 0
         s1 = Square(5)
         s2 = Square(2, 2)
         s3 = Square(3, 1, 3)
@@ -30,7 +30,7 @@ class TestSquare(unittest.TestCase):
 
     def test_area(self):
         """Test that area method returns correct values"""
-        Square._Base__nb_object = 0
+        Base._Base__nb_object = 0
         s1 = Square(5)
         s2 = Square(2, 2)
         s3 = Square(3, 1, 3)
@@ -46,7 +46,7 @@ class TestSquare(unittest.TestCase):
         in order to reset stdout to beginning of stream even if the test
         fails.
         """
-        Square._Base__nb_object = 0
+        Base._Base__nb_object = 0
         s1 = Square(5)
         s1_out = "#####\n" \
                  "#####\n" \
@@ -85,7 +85,7 @@ class TestSquare(unittest.TestCase):
 
     def test_size(self):
         """Test that Square `size` attribute is set correctly"""
-        Square._Base__nb_object = 0
+        Base._Base__nb_object = 0
         s1 = Square(5)
         self.assertEqual(s1.size, 5)
         self.assertEqual(s1.__str__(), "[Square] (1) 0/0 - 5")
@@ -97,7 +97,7 @@ class TestSquare(unittest.TestCase):
 
     def test_update_args_kwargs(self):
         """Test that `update()` method correctly handles *args and **kwargs"""
-        Square._Base__nb_object = 0
+        Base._Base__nb_object = 0
         s1 = Square(5)
         self.assertEqual(s1.__str__(), "[Square] (1) 0/0 - 5")
         s1.update(10)
@@ -122,7 +122,7 @@ class TestSquare(unittest.TestCase):
         resulting objects to show that they have the same attributes but
         are not identical objects.
         """
-        Square._Base__nb_object = 0
+        Base._Base__nb_object = 0
         s1 = Square(10, 2, 1)
         self.assertEqual(s1.__str__(), "[Square] (1) 2/1 - 10")
         self.assertEqual(s1.to_dictionary(), {'id': 1, 'x': 2,
