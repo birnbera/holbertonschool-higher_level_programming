@@ -38,7 +38,7 @@ class Base:
             method.
         """
         c = cls(1, 1)
-        if type(dictionary) is not dict:
+        if not hasattr(dictionary, "keys") or not callable(dictionary.keys):
             dictionary = {}
         c.update(**dictionary)
         return c
