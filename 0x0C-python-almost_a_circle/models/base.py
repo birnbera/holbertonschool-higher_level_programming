@@ -1,6 +1,7 @@
 #!/usr/bin/python3
 """Module to represent Base object to be extended by Square and Rectangle"""
 import json
+import csv
 
 
 class Base:
@@ -107,5 +108,53 @@ class Base:
             with open("{:s}.json".format(cls.__name__), 'r') as jf:
                 list_dictionaries = cls.from_json_string(jf.read())
                 return [cls.create(**d) for d in list_dictionaries]
-        except:
+        except FileNotFoundError:
+            return []
+
+    @classmethod
+    def save_to_file_csv(cls, list_objs):
+        """Class method to convert `list_objs` to csv format and save
+        in file with name '<class name>.csv'.
+
+        Args:
+            list_objs (list): list of objects of class from which
+                this method is called.
+
+        Raises: Any error encounterd during conversion to csv.
+        """
+        if not list_objs:
+            list_objs = []
+        with open("{}.csv".format(cls.__name__), 'w') as csvf:
+            if cls.__name__ == "Rectangle":
+                fieldnames = ['id', 'width', 'height', 'x', 'y']
+            elif cls.__name__ == "Square":
+                fieldnames = ['id', 'size', 'x', 'y']
+            else:
+                fieldnames = ['id']
+            writer = csv.DictWriter(csvf, fieldnames=fieldnames)
+            for obj in list_objs:
+                writer.writerow(obj.to_dictionary())
+
+    @classmethod
+    def load_from_file_csv(cls):
+        """Class method to load file containing csv representation of objects.
+        Attempts to open file named '<class name>.csv' and convert back to
+        original list of objects. If it does not exist, returns empty list.
+        """
+        try:
+            with open("{}.csv".format(cls.__name__), 'r') as csvf:
+                if cls.__name__ == "Rectangle":
+                    fieldnames = ['id', 'width', 'height', 'x', 'y']
+                elif cls.__name__ == "Square":
+                    fieldnames = ['id', 'size', 'x', 'y']
+                else:
+                    fieldnames = ['id']
+                reader = csv.DictReader(csvf, fieldnames=fieldnames)
+                list_objs = []
+                for row in reader:
+                    for key in row:
+                        row[key] = int(row[key])
+                    list_objs.append(cls.create(**row))
+                return list_objs
+        except FileNotFoundError:
             return []
