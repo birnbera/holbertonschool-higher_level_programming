@@ -4,6 +4,7 @@ import unittest
 import sys
 from io import StringIO
 from models.base import Base
+from models.base import __doc__ as module_doc
 from models.rectangle import Rectangle
 import json
 
@@ -19,6 +20,22 @@ class TestBase(unittest.TestCase):
         """Following test completion reassign true stdout file stream to
         sys.stdout so printing goes to the screen as before."""
         sys.stdout = sys.__stdout__
+
+    def test_docstrings(self):
+        self.assertIsNotNone(module_doc)
+        self.assertIsNotNone(Base.__doc__)
+        self.assertIs(hasattr(Base, "__init__"), True)
+        self.assertIsNotNone(Base.__init__.__doc__)
+        self.assertIs(hasattr(Base, "create"), True)
+        self.assertIsNotNone(Base.create.__doc__)
+        self.assertIs(hasattr(Base, "to_json_string"), True)
+        self.assertIsNotNone(Base.to_json_string.__doc__)
+        self.assertIs(hasattr(Base, "from_json_string"), True)
+        self.assertIsNotNone(Base.from_json_string.__doc__)
+        self.assertIs(hasattr(Base, "save_to_file"), True)
+        self.assertIsNotNone(Base.save_to_file.__doc__)
+        self.assertIs(hasattr(Base, "load_from_file"), True)
+        self.assertIsNotNone(Base.load_from_file.__doc__)
 
     def test_id(self):
         """Test for id property"""
