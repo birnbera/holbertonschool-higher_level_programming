@@ -43,7 +43,7 @@ class Base:
 
     @staticmethod
     def to_json_string(list_dictionaries):
-        """Static method to serialize into json list of dictionary objects.
+        """Static method to serialize list of dictionary objects into json.
 
         Args:
             list_dictionaries (list of dicts): List of dictionaries

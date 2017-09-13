@@ -4,12 +4,7 @@ import unittest
 import sys
 from io import StringIO
 from models.base import Base
-try:  # Uses Rectangle instance for `test_to_json_string`
-    from models.rectangle import Rectangle
-except ImportError:  # Skip test if Rectangle unavailable or not implemented
-    DONT_RUN = True
-else:
-    DONT_RUN = False
+from models.rectangle import Rectangle
 import json
 
 
