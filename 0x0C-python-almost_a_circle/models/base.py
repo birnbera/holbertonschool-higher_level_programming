@@ -172,6 +172,13 @@ class Base:
             import random
         except ImportError("Turtle drawing library not available") as e:
             print("[{}]: {}".format(e.__class__.__name__, e))
+            for r in list_rectangles:
+                print(r,':')
+                r.display()
+            print()
+            for s in list_squares:
+                print(s, ':')
+                s.display()
         else:
             max_width = max(max(map(lambda r: r.width, list_rectangles)),
                             max(map(lambda s: s.size, list_squares)))
