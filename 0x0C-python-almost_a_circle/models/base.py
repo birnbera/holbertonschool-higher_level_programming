@@ -187,6 +187,9 @@ class Base:
                               max_max_height)
             max_len = max(len(list_rectangles), len(list_squares))
             win = turtle.Screen()
+            aspect_ratio = 3*max_max_height/(max_max_width*(max_len+1))
+            print(aspect_ratio)
+            win.setup(width=800, height=int(800*aspect_ratio))
             win.setworldcoordinates(0,
                                     3*max_max_height,
                                     max_max_width*(max_len+1),
