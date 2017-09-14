@@ -203,7 +203,7 @@ class Base:
                 turt.write(rect.__str__())
                 turt.dot()
                 off_heading = turt.towards(turt.xcor() + rect.x,
-                                          turt.ycor() + rect.y)
+                                           turt.ycor() + rect.y)
                 curr_heading = turt.heading()
                 turt.setheading(off_heading)
                 turt.goto(turt.xcor() + rect.x, turt.ycor() + rect.y)
@@ -225,7 +225,7 @@ class Base:
                 turt.write(square.__str__())
                 turt.dot()
                 off_heading = turt.towards(turt.xcor() + square.x,
-                                          turt.ycor() + square.y)
+                                           turt.ycor() + square.y)
                 curr_heading = turt.heading()
                 turt.setheading(off_heading)
                 turt.goto(turt.xcor() + square.x, turt.ycor() + square.y)
