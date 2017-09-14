@@ -158,3 +158,82 @@ class Base:
                 return list_objs
         except FileNotFoundError:
             return []
+
+    @staticmethod
+    def draw(list_rectangles, list_squares):
+        """Draw rectangles onto the screen using Tkinter and the
+        Turtle drawing library.
+
+        Args:
+            list_rectangles (list): list of Rectangle instances
+        """
+        try:
+            import turtle
+            import random
+        except ImportError("Turtle drawing library not available") as e:
+            print("[{}]: {}".format(e.__class__.__name__, e))
+        else:
+            max_width = max(max(map(lambda r: r.width, list_rectangles)),
+                            max(map(lambda s: s.size, list_squares)))
+            max_width_off = max(max(map(lambda r: r.x, list_rectangles)),
+                                max(map(lambda s: s.x, list_squares)))
+            max_max_width = max_width + max_width_off
+            max_height = max(max(map(lambda r: r.height, list_rectangles)),
+                             max(map(lambda s: s.size, list_squares)))
+            max_height_off = max(max(map(lambda r: r.y, list_rectangles)),
+                                 max(map(lambda s: s.y, list_squares)))
+            max_max_height = max_height + max_height_off
+            max_max_max = max(max_max_width,
+                              max_max_height)
+            max_len = max(len(list_rectangles), len(list_squares))
+            win = turtle.Screen()
+            win.setworldcoordinates(0,
+                                    3*max_max_height,
+                                    max_max_width*(max_len+1),
+                                    0)
+            turt = turtle.Turtle()
+            turt.hideturtle()
+            turt.penup()
+            turt.pensize(3)
+            turt.color('green', 'blue')
+            turt.goto(0, max_max_height/3)
+            for i, rect in enumerate(list_rectangles):
+                turt.setx(i*max_max_width + (i+1)*max_max_width/(max_len + 1))
+                turt.pendown()
+                turt.write(rect.__str__())
+                turt.dot()
+                off_heading = turt.towards(turt.xcor() + rect.x,
+                                          turt.ycor() + rect.y)
+                curr_heading = turt.heading()
+                turt.setheading(off_heading)
+                turt.goto(turt.xcor() + rect.x, turt.ycor() + rect.y)
+                turt.setheading(curr_heading)
+                turt.begin_fill()
+                for _ in range(2):
+                    turt.forward(rect.width)
+                    turt.right(-90)
+                    turt.forward(rect.height)
+                    turt.right(-90)
+                turt.end_fill()
+                turt.penup()
+
+            turt.goto(0, 5*max_max_height/3)
+            turt.color('orange', 'purple')
+            for j, square in enumerate(list_squares):
+                turt.setx(j*max_max_width + (j+1)*max_max_width/(max_len + 1))
+                turt.pendown()
+                turt.write(square.__str__())
+                turt.dot()
+                off_heading = turt.towards(turt.xcor() + square.x,
+                                          turt.ycor() + square.y)
+                curr_heading = turt.heading()
+                turt.setheading(off_heading)
+                turt.goto(turt.xcor() + square.x, turt.ycor() + square.y)
+                turt.setheading(curr_heading)
+                turt.begin_fill()
+                for _ in range(4):
+                    turt.forward(square.size)
+                    turt.right(-90)
+                turt.end_fill()
+                turt.penup()
+            win.exitonclick()
