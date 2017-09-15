@@ -53,6 +53,7 @@ class TestSquare(unittest.TestCase):
         Base._Base__nb_object = 0
         with self.assertRaises(TypeError):
             Square()
+        with self.assertRaises(TypeError):
             Square(x=1, y=1)
 
     def test_raise(self):
@@ -60,22 +61,33 @@ class TestSquare(unittest.TestCase):
         input values."""
         with self.assertRaisesRegex(TypeError, "width must be an integer"):
             Square("10")
+        with self.assertRaisesRegex(TypeError, "width must be an integer"):
             Square(10.0)
+        with self.assertRaisesRegex(TypeError, "width must be an integer"):
             Square(True)
+        with self.assertRaisesRegex(TypeError, "width must be an integer"):
             Square(-10.3)
+        with self.assertRaisesRegex(TypeError, "width must be an integer"):
             Square([3])
         with self.assertRaisesRegex(ValueError, "width must be > 0"):
             Square(-10)
+        with self.assertRaisesRegex(ValueError, "width must be > 0"):
             Square(0)
         with self.assertRaisesRegex(TypeError, "x must be an integer"):
             Square(10, {})
+        with self.assertRaisesRegex(TypeError, "x must be an integer"):
             Square(10, 1.1)
+        with self.assertRaisesRegex(TypeError, "x must be an integer"):
             Square(10, False)
+        with self.assertRaisesRegex(TypeError, "x must be an integer"):
             Square(10, x=float(0))
         with self.assertRaisesRegex(TypeError, "y must be an integer"):
             Square(10, 2, {})
+        with self.assertRaisesRegex(TypeError, "y must be an integer"):
             Square(10, 2, 1.1)
+        with self.assertRaisesRegex(TypeError, "y must be an integer"):
             Square(10, 2, False)
+        with self.assertRaisesRegex(TypeError, "y must be an integer"):
             Square(10, 2, y=float(0))
         with self.assertRaisesRegex(ValueError, "x must be >= 0"):
             Square(10, -1, 3)
@@ -160,6 +172,7 @@ class TestSquare(unittest.TestCase):
         self.assertEqual(s1.__str__(), "[Square] (1) 0/0 - 10")
         with self.assertRaisesRegex(TypeError, "width must be an integer"):
             s1.size = "9"
+        with self.assertRaisesRegex(TypeError, "width must be an integer"):
             s1.size = 1.1
         with self.assertRaisesRegex(ValueError, "width must be > 0"):
             s1.size = 0
@@ -185,15 +198,20 @@ class TestSquare(unittest.TestCase):
         self.assertEqual(s1.__str__(), "[Square] (89) 12/1 - 7")
         with self.assertRaises(TypeError):
             s1.update(1, 1.1, 1, 1)
+        with self.assertRaises(TypeError):
             s1.update(1, "a")
+        with self.assertRaises(TypeError):
             s1.update(1, 1, [], 0)
+        with self.assertRaises(TypeError):
             s1.update(1, 1, 0, [])
         with self.assertRaises(ValueError):
             s1.update(1, 0)
+        with self.assertRaises(ValueError):
             s1.update(1, 1, -1, 1)
+        with self.assertRaises(ValueError):
             s1.update(1, 1, 1, -1)
         s1.update(**{'wow': 3, 'hey': 'wow', 'id': 89})
-        self.assertEqual(s1.__str__(), "[Square] (89) 12/1 - 7")
+        self.assertEqual(s1.__str__(), "[Square] (89) 1/1 - 1")
         s1.update({'x': 10, 'height': 8})
         self.assertIs(type(s1.id), dict)
 
