@@ -173,7 +173,7 @@ class Base:
         except ImportError("Turtle drawing library not available") as e:
             print("[{}]: {}".format(e.__class__.__name__, e))
             for r in list_rectangles:
-                print(r,':')
+                print(r, ':')
                 r.display()
             print()
             for s in list_squares:
