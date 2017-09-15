@@ -37,14 +37,16 @@ class TestSquare(unittest.TestCase):
         self.assertIs(hasattr(Square, "to_dictionary"), True)
         self.assertIsNotNone(Square.to_dictionary.__doc__)
 
-    @unittest.expectedFailure
     def test_normal_instantiation(self):
         """Test that normal usage does not raise an exception"""
-        with self.assertRaises(Exception):
-            s1 = Square(1)
-            s2 = Square(1, 2)
-            s3 = Square(1, 2, 3)
-            s4 = Square(1, 2, 3, 4)
+        s1 = Square(1)
+        s2 = Square(1, 2)
+        s3 = Square(1, 2, 3)
+        s4 = Square(1, 2, 3, 4)
+        self.assertEqual(s1.size, 1)
+        self.assertEqual(s2.x, 2)
+        self.assertEqual(s3.y, 3)
+        self.assertEqual(s4.id, 4)
 
     def test_args_cnt(self):
         """Test correct number and type of arguments"""
@@ -214,15 +216,12 @@ class TestSquare(unittest.TestCase):
         self.assertEqual(s2.__str__(), "[Square] (1) 2/1 - 10")
         self.assertNotEqual(s1, s2)
 
-    @unittest.expectedFailure
     def test_create(self):
         """Test that create method from base works with square"""
-        with self.assertRaises(Exception):
-            s1 = Square.create(**{'id': 89})
-            s2 = Square.create(**{ 'id': 89, 'size': 1 })
-            s3 = Square.create(**{ 'id': 89, 'size': 1, 'x': 2 })
-            s4 = Square.create(**{ 'id': 89, 'size': 1, 'x': 2, 'y': 3 })
-
+        s1 = Square.create(**{'id': 89})
+        s2 = Square.create(**{ 'id': 89, 'size': 1 })
+        s3 = Square.create(**{ 'id': 89, 'size': 1, 'x': 2 })
+        s4 = Square.create(**{ 'id': 89, 'size': 1, 'x': 2, 'y': 3 })
         self.assertEqual(s1.id, 89)
         self.assertEqual(s2.size, 1)
         self.assertEqual(s3.x, 2)
