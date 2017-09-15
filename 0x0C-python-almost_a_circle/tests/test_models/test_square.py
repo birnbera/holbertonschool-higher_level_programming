@@ -219,9 +219,9 @@ class TestSquare(unittest.TestCase):
     def test_create(self):
         """Test that create method from base works with square"""
         s1 = Square.create(**{'id': 89})
-        s2 = Square.create(**{ 'id': 89, 'size': 1 })
-        s3 = Square.create(**{ 'id': 89, 'size': 1, 'x': 2 })
-        s4 = Square.create(**{ 'id': 89, 'size': 1, 'x': 2, 'y': 3 })
+        s2 = Square.create(**{'id': 89, 'size': 1})
+        s3 = Square.create(**{'id': 89, 'size': 1, 'x': 2})
+        s4 = Square.create(**{'id': 89, 'size': 1, 'x': 2, 'y': 3})
         self.assertEqual(s1.id, 89)
         self.assertEqual(s2.size, 1)
         self.assertEqual(s3.x, 2)
