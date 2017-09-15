@@ -9,6 +9,7 @@ from models.rectangle import Rectangle
 from models.rectangle import __doc__ as module_doc
 from models.base import Base
 
+
 class TestRectangle(unittest.TestCase):
     """Subclass of unittest.TestCase to test Rectangle class functionality"""
     def setUp(self):
@@ -69,36 +70,36 @@ class TestRectangle(unittest.TestCase):
         """Test that instances raise correct errors and messages for incorrect
         input values."""
         Base._Base__nb_object = 0
-        with self.assertRaises(TypeError, msg="height must be an integer"):
+        with self.assertRaisesRegex(TypeError, "height must be an integer"):
             Rectangle(10, "2")
             Rectangle(10, 2.0)
             Rectangle(10, True)
             Rectangle(10, -2.4)
-        with self.assertRaises(TypeError, msg="width must be an integer"):
-            Rectangle("10", "2")
+        with self.assertRaisesRegex(TypeError, "width must be an integer"):
+            Rectangle("10", 2)
             Rectangle(10.0, 2)
             Rectangle(True, 2)
             Rectangle(-10.3, 2)
             Rectangle([3], 3)
-        with self.assertRaises(ValueError, msg="width must be > 0"):
-            Rectangle(-10, 2)
+        with self.assertRaisesRegex(ValueError, "width must be > 0"):
+            Rectangle(-1, 2)
             Rectangle(0, 2)
-        with self.assertRaises(ValueError, msg="height must be > 0"):
+        with self.assertRaisesRegex(ValueError, "height must be > 0"):
             Rectangle(2, 0)
             Rectangle(2, -10)
-        with self.assertRaises(TypeError, msg="x must be an integer"):
+        with self.assertRaisesRegex(TypeError, "x must be an integer"):
             Rectangle(10, 2, {})
             Rectangle(10, 2, 1.1)
             Rectangle(10, 2, False)
             Rectangle(10, 2, x=float(0))
-        with self.assertRaises(TypeError, msg="y must be an integer"):
+        with self.assertRaisesRegex(TypeError, "y must be an integer"):
             Rectangle(10, 2, 1, {})
             Rectangle(10, 2, 1, 1.1)
             Rectangle(10, 2, 0, False)
             Rectangle(10, 2, y=float(0))
-        with self.assertRaises(ValueError, msg="x must be >= 0"):
+        with self.assertRaisesRegex(ValueError, "x must be >= 0"):
             Rectangle(10, 2, -1, 3)
-        with self.assertRaises(ValueError, msg="y must be >= 0"):
+        with self.assertRaisesRegex(ValueError, "y must be >= 0"):
             Rectangle(10, 2, 3, -1)
 
     def test_area(self):
@@ -185,41 +186,41 @@ class TestRectangle(unittest.TestCase):
         Base._Base__nb_object = 0
         r1 = Rectangle(10, 10, 10, 10)
         self.assertEqual(r1.__str__(), "[Rectangle] (1) 10/10 - 10/10")
-        r1.update(89)
+        r1.update(*[89])
         self.assertEqual(r1.__str__(), "[Rectangle] (89) 10/10 - 10/10")
-        r1.update(89, 2)
+        r1.update(*[89, 2])
         self.assertEqual(r1.__str__(), "[Rectangle] (89) 10/10 - 2/10")
-        r1.update(89, 2, 3)
+        r1.update(*[89, 2, 3])
         self.assertEqual(r1.__str__(), "[Rectangle] (89) 10/10 - 2/3")
-        r1.update(89, 2, 3, 4)
+        r1.update(*[89, 2, 3, 4])
         self.assertEqual(r1.__str__(), "[Rectangle] (89) 4/10 - 2/3")
-        r1.update(89, 2, 3, 4, 5)
+        r1.update(*[89, 2, 3, 4, 5])
         self.assertEqual(r1.__str__(), "[Rectangle] (89) 4/5 - 2/3")
         with self.assertRaises(TypeError):
-            r1.update(1, 1.1, 1, 1, 1)
-            r1.update(1, "a")
-            r1.update(1, 1, 1.0)
-            r1.update(1, 1, "a")
-            r1.update(1, 1, 1, [], 0)
-            r1.update(1, 1, 1, 0, [])
+            r1.update(*[1, 1.1, 1, 1, 1])
+            r1.update(*[1, "a"])
+            r1.update(*[1, 1, 1.0])
+            r1.update(*[1, 1, "a"])
+            r1.update(*[1, 1, 1, [], 0])
+            r1.update(*[1, 1, 1, 0, []])
         with self.assertRaises(ValueError):
-            r1.update(1, 0)
-            r1.update(1, 1, 0)
-            r1.update(1, 1, 1, -1, 1)
-            r1.update(1, 1, 1, 1, -1)
+            r1.update(*[1, 0])
+            r1.update(*[1, 1, 0])
+            r1.update(*[1, 1, 1, -1, 1])
+            r1.update(*[1, 1, 1, 1, -1])
 
     def test_update2(self):
         """Test that `update()` method works with **kwargs unpacking."""
         Base._Base__nb_object = 0
         r1 = Rectangle(10, 10, 10, 10)
         self.assertEqual(r1.__str__(), "[Rectangle] (1) 10/10 - 10/10")
-        r1.update(height=1)
+        r1.update(**{'height': 1})
         self.assertEqual(r1.__str__(), "[Rectangle] (1) 10/10 - 10/1")
-        r1.update(width=1, x=2)
+        r1.update(**{'width': 1, 'x': 2})
         self.assertEqual(r1.__str__(), "[Rectangle] (1) 2/10 - 1/1")
-        r1.update(y=1, width=2, x=3, id=89)
+        r1.update(**{'y': 1, 'width': 2, 'x': 3, 'id': 89})
         self.assertEqual(r1.__str__(), "[Rectangle] (89) 3/1 - 2/1")
-        r1.update(x=1, height=2, y=3, width=4)
+        r1.update(**{'x': 1, 'height': 2, 'y': 3, 'width': 4})
         self.assertEqual(r1.__str__(), "[Rectangle] (89) 1/3 - 4/2")
         r1.update(**{'wow': 3, 'hey': 'wow'})
         self.assertEqual(r1.__str__(), "[Rectangle] (89) 1/3 - 4/2")
@@ -269,3 +270,45 @@ class TestRectangle(unittest.TestCase):
                                         '"width": 2, '
                                         '"height": 4}]'))
         os.remove("Rectangle.json")
+
+    def test_save_to_file_none(self):
+        """Test that `save_to_file()` method of Rectangle instance
+        can be used to directly serialize and write to a file. Removes
+        file after test if test was able to write to disk.
+        """
+        Base._Base__nb_object = 0
+        r1 = Rectangle(10, 7, 2, 8)
+        r2 = Rectangle(2, 4)
+        Rectangle.save_to_file(None)
+        self.assertIs(os.path.exists("Rectangle.json"), True)
+        with open("Rectangle.json", 'r') as f:
+            self.assertEqual(json.loads(f.read()),
+                             json.loads('[]'))
+        os.remove("Rectangle.json")
+
+    def test_save_to_file_mt_list(self):
+        """Test that `save_to_file()` method of Rectangle instance
+        can be used to directly serialize and write to a file. Removes
+        file after test if test was able to write to disk.
+        """
+        Base._Base__nb_object = 0
+        r1 = Rectangle(10, 7, 2, 8)
+        r2 = Rectangle(2, 4)
+        Rectangle.save_to_file([])
+        self.assertIs(os.path.exists("Rectangle.json"), True)
+        with open("Rectangle.json", 'r') as f:
+            self.assertEqual(json.loads(f.read()),
+                             json.loads('[]'))
+        os.remove("Rectangle.json")
+
+    def test_load_from_file(self):
+        """Test load from file if file non-existent"""
+        self.assertEqual(Rectangle.load_from_file(), [])
+        Base._Base__nb_object = 0
+        r1 = Rectangle(1, 1)
+        r2 = Rectangle(2, 2)
+        Rectangle.save_to_file([r1, r2])
+        Base._Base__nb_object = 0
+        rlist = Rectangle.load_from_file()
+        self.assertEqual(rlist[0].to_dictionary(), r1.to_dictionary())
+        self.assertEqual(rlist[1].to_dictionary(), r2.to_dictionary())

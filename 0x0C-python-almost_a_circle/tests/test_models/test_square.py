@@ -2,6 +2,8 @@
 """Unit tests for Square class"""
 import unittest
 import sys
+import os
+import json
 from io import StringIO
 from models.square import Square
 from models.square import __doc__ as module_doc
@@ -35,6 +37,15 @@ class TestSquare(unittest.TestCase):
         self.assertIs(hasattr(Square, "to_dictionary"), True)
         self.assertIsNotNone(Square.to_dictionary.__doc__)
 
+    @unittest.expectedFailure
+    def test_normal_instantiation(self):
+        """Test that normal usage does not raise an exception"""
+        with self.assertRaises(Exception):
+            s1 = Square(1)
+            s2 = Square(1, 2)
+            s3 = Square(1, 2, 3)
+            s4 = Square(1, 2, 3, 4)
+
     def test_args_cnt(self):
         """Test correct number and type of arguments"""
         Base._Base__nb_object = 0
@@ -45,28 +56,28 @@ class TestSquare(unittest.TestCase):
     def test_raise(self):
         """Test that instances raise correct errors and messages for incorrect
         input values."""
-        with self.assertRaises(TypeError, msg="width must be an integer"):
+        with self.assertRaisesRegex(TypeError, "width must be an integer"):
             Square("10")
             Square(10.0)
             Square(True)
             Square(-10.3)
             Square([3])
-        with self.assertRaises(ValueError, msg="width must be > 0"):
+        with self.assertRaisesRegex(ValueError, "width must be > 0"):
             Square(-10)
             Square(0)
-        with self.assertRaises(TypeError, msg="x must be an integer"):
+        with self.assertRaisesRegex(TypeError, "x must be an integer"):
             Square(10, {})
             Square(10, 1.1)
             Square(10, False)
             Square(10, x=float(0))
-        with self.assertRaises(TypeError, msg="y must be an integer"):
+        with self.assertRaisesRegex(TypeError, "y must be an integer"):
             Square(10, 2, {})
             Square(10, 2, 1.1)
             Square(10, 2, False)
             Square(10, 2, y=float(0))
-        with self.assertRaises(ValueError, msg="x must be >= 0"):
+        with self.assertRaisesRegex(ValueError, "x must be >= 0"):
             Square(10, -1, 3)
-        with self.assertRaises(ValueError, msg="y must be >= 0"):
+        with self.assertRaisesRegex(ValueError, "y must be >= 0"):
             Square(10, 2, -1)
 
     def test_str(self):
@@ -145,10 +156,10 @@ class TestSquare(unittest.TestCase):
         s1.size = 10
         self.assertEqual(s1.size, 10)
         self.assertEqual(s1.__str__(), "[Square] (1) 0/0 - 10")
-        with self.assertRaises(TypeError, msg="width must be an integer"):
+        with self.assertRaisesRegex(TypeError, "width must be an integer"):
             s1.size = "9"
             s1.size = 1.1
-        with self.assertRaises(ValueError, msg="width must be > 0"):
+        with self.assertRaisesRegex(ValueError, "width must be > 0"):
             s1.size = 0
 
     def test_update_args_kwargs(self):
@@ -202,3 +213,81 @@ class TestSquare(unittest.TestCase):
         s2.update(**s1.to_dictionary())
         self.assertEqual(s2.__str__(), "[Square] (1) 2/1 - 10")
         self.assertNotEqual(s1, s2)
+
+    @unittest.expectedFailure
+    def test_create(self):
+        """Test that create method from base works with square"""
+        with self.assertRaises(Exception):
+            s1 = Square.create(**{'id': 89})
+            s2 = Square.create(**{ 'id': 89, 'size': 1 })
+            s3 = Square.create(**{ 'id': 89, 'size': 1, 'x': 2 })
+            s4 = Square.create(**{ 'id': 89, 'size': 1, 'x': 2, 'y': 3 })
+
+        self.assertEqual(s1.id, 89)
+        self.assertEqual(s2.size, 1)
+        self.assertEqual(s3.x, 2)
+        self.assertEqual(s4.y, 3)
+
+    def test_save_to_file(self):
+        """Test that `save_to_file()` method of Rectangle instance
+        can be used to directly serialize and write to a file. Removes
+        file after test if test was able to write to disk.
+        """
+        Base._Base__nb_object = 0
+        r1 = Square(10, 2, 8)
+        r2 = Square(2)
+        Square.save_to_file([r1, r2])
+        self.assertIs(os.path.exists("Square.json"), True)
+        with open("Square.json", 'r') as f:
+            self.assertEqual(json.loads(f.read()),
+                             json.loads('[{"y": 8, '
+                                        '"x": 2, '
+                                        '"id": 1, '
+                                        '"size": 10}, '
+                                        '{"y": 0, '
+                                        '"x": 0, '
+                                        '"id": 2, '
+                                        '"size": 2}]'))
+        os.remove("Square.json")
+
+    def test_save_to_file_none(self):
+        """Test that `save_to_file()` method of Square instance
+        can be used to directly serialize and write to a file. Removes
+        file after test if test was able to write to disk.
+        """
+        Base._Base__nb_object = 0
+        r1 = Square(10, 2, 8)
+        r2 = Square(2)
+        Square.save_to_file(None)
+        self.assertIs(os.path.exists("Square.json"), True)
+        with open("Square.json", 'r') as f:
+            self.assertEqual(json.loads(f.read()),
+                             json.loads('[]'))
+        os.remove("Square.json")
+
+    def test_save_to_file_mt_list(self):
+        """Test that `save_to_file()` method of Square instance
+        can be used to directly serialize and write to a file. Removes
+        file after test if test was able to write to disk.
+        """
+        Base._Base__nb_object = 0
+        r1 = Square(10, 2, 8)
+        r2 = Square(2)
+        Square.save_to_file([])
+        self.assertIs(os.path.exists("Square.json"), True)
+        with open("Square.json", 'r') as f:
+            self.assertEqual(json.loads(f.read()),
+                             json.loads('[]'))
+        os.remove("Square.json")
+
+    def test_load_from_file(self):
+        """Test load from file if file non-existent"""
+        self.assertEqual(Square.load_from_file(), [])
+        Base._Base__nb_object = 0
+        r1 = Square(1, 1, 1)
+        r2 = Square(2, 2, 2)
+        Square.save_to_file([r1, r2])
+        Base._Base__nb_object = 0
+        rlist = Square.load_from_file()
+        self.assertEqual(rlist[0].to_dictionary(), r1.to_dictionary())
+        self.assertEqual(rlist[1].to_dictionary(), r2.to_dictionary())

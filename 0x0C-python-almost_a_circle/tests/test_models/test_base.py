@@ -22,6 +22,7 @@ class TestBase(unittest.TestCase):
         sys.stdout = sys.__stdout__
 
     def test_docstrings(self):
+        """Test for existence of docstrings"""
         self.assertIsNotNone(module_doc)
         self.assertIsNotNone(Base.__doc__)
         self.assertIs(hasattr(Base, "__init__"), True)
