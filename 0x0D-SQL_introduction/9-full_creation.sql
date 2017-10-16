@@ -1,4 +1,4 @@
-# Create new table called `second_table` with specified rows
+-- Create new table called `second_table` with specified rows
 CREATE TABLE IF NOT EXISTS second_table (
 id INT,
 name VARCHAR(256),

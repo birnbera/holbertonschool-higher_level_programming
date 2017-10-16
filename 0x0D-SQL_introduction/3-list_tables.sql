@@ -1,2 +1,2 @@
-# Show tables from database indicated on command line
+-- Show tables from database indicated on command line
 SHOW TABLES;
