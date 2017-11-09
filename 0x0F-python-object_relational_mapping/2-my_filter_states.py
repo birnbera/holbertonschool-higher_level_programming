@@ -1,7 +1,5 @@
 #!/usr/bin/python3
-"""Script to list all states with name starting with `N` from
-database `hbtn_0e_0_usa`
-"""
+"""Script to display all rows of states table where name matches argument"""
 
 if __name__ == "__main__":
     import MySQLdb
@@ -12,7 +10,7 @@ if __name__ == "__main__":
                          database=sys.argv[3])
     cur = db.cursor()
     cur.execute("SELECT * FROM states "
-                "WHERE name LIKE 'N%' "
-                "ORDER BY id ASC")
+                "WHERE name = '{}' "
+                "ORDER BY id ASC".format(sys.argv[4]))
     for row in cur.fetchall():
         print(row)
