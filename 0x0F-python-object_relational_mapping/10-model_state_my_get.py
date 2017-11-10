@@ -40,4 +40,4 @@ if __name__ == "__main__":
         print("Not found")
     else:
         for state in states:
-            print("{}: {}".format(state.id, state.name))
+            print("{}".format(state.id))
