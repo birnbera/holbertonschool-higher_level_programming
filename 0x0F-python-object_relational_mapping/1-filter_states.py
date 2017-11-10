@@ -12,7 +12,10 @@ if __name__ == "__main__":
                          database=sys.argv[3])
     cur = db.cursor()
     cur.execute("SELECT * FROM states "
+                "COLLATE 'utf8_bin' "
                 "WHERE name LIKE 'N%' "
                 "ORDER BY id ASC")
     for row in cur.fetchall():
         print(row)
+    cur.close()
+    db.close()

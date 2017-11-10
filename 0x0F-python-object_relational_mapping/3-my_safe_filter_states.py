@@ -1,5 +1,7 @@
 #!/usr/bin/python3
-"""Script to display all rows of states table where name matches argument"""
+"""SQL injection safe query to get rows of states where name matches
+an argument.
+"""
 
 if __name__ == "__main__":
     import MySQLdb
@@ -11,8 +13,8 @@ if __name__ == "__main__":
     cur = db.cursor()
     cur.execute("SELECT * FROM states "
                 "COLLATE 'utf8_bin' "
-                "WHERE name = '{}' "
-                "ORDER BY id ASC".format(sys.argv[4]))
+                "WHERE name = %s "
+                "ORDER BY id ASC", (sys.argv[4],))
     for row in cur.fetchall():
         print(row)
     cur.close()
