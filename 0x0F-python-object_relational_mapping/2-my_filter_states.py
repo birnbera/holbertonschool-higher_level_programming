@@ -10,9 +10,9 @@ if __name__ == "__main__":
                          database=sys.argv[3])
     cur = db.cursor()
     cur.execute("SELECT * FROM states "
-                "WHERE name = %s "
+                "WHERE name = '{}' "
                 "COLLATE 'latin1_general_cs' "
-                "ORDER BY id ASC", (sys.argv[4],))
+                "ORDER BY id ASC".format(sys.argv[4]))
     for row in cur.fetchall():
         print(row)
     cur.close()
