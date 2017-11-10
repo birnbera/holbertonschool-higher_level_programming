@@ -15,7 +15,7 @@ class State(Base):
     Columns:
         id (int): /NOT NULL/AUTO_INCREMENT/PRIMARY_KEY/
         name (string): /VARCHAR(128)/NOT NULL/
-"""
+    """
     __tablename__ = 'states'
 
     id = Column(Integer, nullable=False, primary_key=True, autoincrement=True)
