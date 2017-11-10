@@ -31,7 +31,7 @@ if __name__ == "__main__":
                            '{}:{}@localhost/{}'
                            .format(sys.argv[1],
                                    sys.argv[2],
-                                   sys.argv[3]), echo=True)
+                                   sys.argv[3]))
     Session = sessionmaker(bind=engine)
     session = Session()
     states = session.query(State).filter(State.name == sys.argv[4]).\
