@@ -1,7 +1,3 @@
-#!/usr/bin/env bash
+#!/bin/bash
 # Display the size of an HTTP request body
-
-curl --silent \
-     --output /dev/null \
-     --write-out '%{size_download}\n' \
-     "$1"
+curl -so /dev/null -w '%{size_download}\n' "$1"
