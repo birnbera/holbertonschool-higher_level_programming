@@ -2,12 +2,12 @@
 """Script to make a request to a url passed on the command line"""
 
 if __name__ == "__main__":
-    import urllib.request
-    import urllib.error
-    import sys
+    from urllib.request import urlopen
+    from urllib.error import URLError
+    from sys import argv
 
     try:
-        with urllib.request.urlopen(sys.argv[1]) as r:
+        with urlopen(argv[1]) as r:
             print(r.getheader('X-Request-Id', ''))
-    except (urllib.error.URLError, IndexError) as e:
+    except (URLError, IndexError) as e:
         print(e)
