@@ -2,7 +2,11 @@
 """Script to make a request to a url passed on the command line"""
 
 import urllib.request
+import urllib.error
 import sys
 
-with urllib.request.urlopen(sys.argv[1]) as r:
-    print(r.getheader('X-Request-Id', ''))
+try:
+    with urllib.request.urlopen(sys.argv[1]) as r:
+        print(r.getheader('X-Request-Id', ''))
+except (urllib.error.URLError, IndexError) as e:
+    print(e)
