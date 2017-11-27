@@ -8,6 +8,6 @@ if __name__ == "__main__":
 
     try:
         with urllib.request.urlopen(sys.argv[1]) as r:
-            print(r.getheader('X-Request-Id', ''))
+            print(r.getheader('X-Request-Id'))
     except (urllib.error.URLError, IndexError) as e:
         print(e)
