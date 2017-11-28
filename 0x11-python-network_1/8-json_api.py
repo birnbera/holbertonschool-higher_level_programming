@@ -6,11 +6,11 @@ if __name__ == "__main__":
     from sys import argv
 
     try:
-        if len(argv) <= 2:
+        if len(argv) < 2:
             letter = ""
         else:
-            letter = argv[2]
-        r = post(argv[1], data={'q': letter})
+            letter = argv[1]
+        r = post('http://0.0.0.0:5000/search_user', data={'q': letter})
         j = r.json()
         if not j:
             print('No result')
