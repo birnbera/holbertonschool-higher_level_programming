@@ -16,8 +16,8 @@ if __name__ == "__main__":
         j = r.json()
         for commit in j[:10]:
             print('{}: {}'.format(commit.get('sha'),
-                                       commit.get('commit')
-                                       .get('author')
-                                       .get('name')))
+                                  commit.get('commit')
+                                  .get('author')
+                                  .get('name')))
     except IndexError as e:
         print(e)
