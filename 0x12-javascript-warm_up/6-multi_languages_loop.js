@@ -1,5 +1,5 @@
 #!/usr/bin/node
 let multi = ['C is fun', 'Python is cool', 'Javascript is amazing'];
-multi.forEach(function (item, index, array) {
-  console.log(item);
-});
+for (let i = 0; i < multi.length; i++) {
+  console.log(multi[i]);
+}
