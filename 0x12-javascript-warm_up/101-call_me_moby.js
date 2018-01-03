@@ -1,7 +1,7 @@
 #!/usr/bin/node
 const callMeMoby = function (x, theFunction) {
-  do {
+  while (x-- > 0) {
     theFunction();
-  } while (--x > 0);
+  }
 };
 module.exports.callMeMoby = callMeMoby;
