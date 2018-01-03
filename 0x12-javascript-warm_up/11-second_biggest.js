@@ -2,7 +2,6 @@
 let args = process.argv.slice(2).map((item) => parseInt(item));
 if (args.length <= 1) console.log(0);
 else {
-  console.log(args);
   let max = args[0];
   let second = args[1];
   for (let i = 1; i < args.length; i++) {
