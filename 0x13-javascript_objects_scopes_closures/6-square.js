@@ -22,10 +22,13 @@ class Rectangle {
   }
 }
 
-module.exports = class Square extends Rectangle {
+class OldSquare extends Rectangle {
   constructor (size) {
     super(size, size);
   }
+}
+
+module.exports = class Square extends OldSquare {
   charPrint (c) {
     if (c == undefined) c = 'X';
     for (let i = 0; i < this.height; i++) {
