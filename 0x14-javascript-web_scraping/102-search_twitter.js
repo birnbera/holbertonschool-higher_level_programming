@@ -39,11 +39,6 @@ request.post(options1, (err, resp, body) => {
           for (let tweet of body.statuses) {
             console.log('[' + tweet.id + '] ' + tweet.text + ' by ' + tweet.user.screen_name);
           }
-        } else {
-          console.log(Error('Unknown error'));
-          console.log(resp.statusCode);
-          console.log(body);
-          console.log(resp.headers);
         }
       });
     } else {
