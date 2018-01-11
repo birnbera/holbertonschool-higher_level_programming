@@ -23,7 +23,7 @@ let oauth2 = new Promise((resolve, reject) => {
       reject(err);
     } else if (resp.statusCode === 200) {
       if (body.token_type === 'bearer') {
-	resolve(body.access_token);
+        resolve(body.access_token);
       }
     } else {
       reject(resp.body);
@@ -31,11 +31,11 @@ let oauth2 = new Promise((resolve, reject) => {
   });
 });
 
-oauth2.then(access_token => {
+oauth2.then(accessToken => {
   let options = {
     url: 'https://api.twitter.com/1.1/search/tweets.json',
     headers: {
-      Authorization: utf8.encode('Bearer ' + access_token)
+      Authorization: utf8.encode('Bearer ' + accessToken)
     },
     qs: {
       q: searchStr,
@@ -54,5 +54,5 @@ oauth2.then(access_token => {
   });
 },
 onRejected => {
-  console.log(onRejected)
+  console.log(onRejected);
 });
