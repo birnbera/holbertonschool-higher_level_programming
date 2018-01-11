@@ -37,7 +37,7 @@ request.post(options1, (err, resp, body) => {
           console.log(err);
         } else if (resp.statusCode === 200) {
           for (let tweet of body.statuses) {
-            console.log('[' + tweet.id + '] ' + tweet.text + ' by ' + tweet.user.screen_name);
+            console.log('[' + tweet.id + '] ' + tweet.text + ' by ' + tweet.user.name);
           }
         }
       });
