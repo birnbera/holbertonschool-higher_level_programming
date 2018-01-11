@@ -41,8 +41,6 @@ request.post(options1, (err, resp, body) => {
           }
         }
       });
-    } else {
-      console.log(Error('Wrong token type: ' + body.token_type));
     }
   }
 });
