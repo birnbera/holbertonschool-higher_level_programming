@@ -1,179 +1,610 @@
-<h1 class="gap">0x15. Javascript - Web JQuery</h1>
+##  0\. No jQuery
 
+Write a Javascript script that updates the text color of the HTML tag `HEADER`
+to red (`#FF0000`):
 
-<h4 class="task">
-    0. No jQuery
-      <span class="alert alert-warning mandatory-optional">
-        mandatory
-      </span>
-</h4><p>Write a Javascript script that updates the text color of the HTML tag <code>HEADER</code> to red (<code>#FF0000</code>):</p><ul>
-<li>You must use <code>document.querySelector</code> to select the HTML tag</li>
-<li>You can’t use the jQuery API</li>
-</ul><p>Please test with this HTML file in your browser:</p>
+  * You must use `document.querySelector` to select the HTML tag
+  * You can’t use the jQuery API
 
+Please test with this HTML file in your browser:
 
-<h4 class="task">
-    1. With jQuery
-      <span class="alert alert-warning mandatory-optional">
-        mandatory
-      </span>
-</h4><p>Write a Javascript script that updates the text color of the HTML tag <code>HEADER</code> to red (<code>#FF0000</code>):</p><ul>
-<li>You can’t use <code>document.querySelector</code> to select the HTML tag</li>
-<li>You must use the jQuery API</li>
-</ul><p>Please test with this HTML file in your browser:</p>
+    
+    
+    guillaume@ubuntu:~/0x15$ cat 0-main.html 
+    <!DOCTYPE html>
+    <html lang="en">
+      <head>
+        <title>Holberton School</title>
+      </head>
+      <body>
+        <header> 
+          First HTML page
+        </header>
+        <footer>
+          Holberton School - 2017
+        </footer>
+        <script type="text/javascript" src="0-script.js"></script>
+      </body>
+    </html>
+    guillaume@ubuntu:~/0x15$ 
+    
 
+**Repo:**
 
-<h4 class="task">
-    2. Click and turn red
-      <span class="alert alert-warning mandatory-optional">
-        mandatory
-      </span>
-</h4><p>Write a Javascript script that updates the text color of the HTML tag <code>HEADER</code> to red (<code>#FF0000</code>) when the user clicks on the tag <code>DIV#red_header</code>:</p><ul>
-<li>You can’t use <code>document.querySelector</code> to select the HTML tag</li>
-<li>You must use the jQuery API</li>
-</ul><p>Please test with this HTML file in your browser:</p>
+  * GitHub repository: `holbertonschool-higher_level_programming`
+  * Directory: `0x15-javascript-web_jquery`
+  * File: `0-script.js`
 
+##  1\. With jQuery
 
-<h4 class="task">
-    3. Add `.red` class
-      <span class="alert alert-warning mandatory-optional">
-        mandatory
-      </span>
-</h4><p>Write a Javascript script that adds the class <code>red</code> to the HTML tag <code>HEADER</code> to red (<code>#FF0000</code>) when the user clicks on the tag <code>DIV#red_header</code>:</p><ul>
-<li>You can’t use <code>document.querySelector</code> to select the HTML tag</li>
-<li>You must use the jQuery API</li>
-</ul><p>Please test with this HTML file in your browser:</p>
+Write a Javascript script that updates the text color of the HTML tag `HEADER`
+to red (`#FF0000`):
 
+  * You can’t use `document.querySelector` to select the HTML tag
+  * You must use the jQuery API
 
-<h4 class="task">
-    4. Toggle classes
-      <span class="alert alert-warning mandatory-optional">
-        mandatory
-      </span>
-</h4><p>Write a Javascript script that toggles the class of the HTML tag <code>HEADER</code> to red (<code>#FF0000</code>) when the user clicks on the tag <code>DIV#toggle_header</code>:</p><ul>
-<li>The <code>HEADER</code> tag must always have one class: <code>red</code> or <code>green</code>, never both in the same time, never empty.</li>
-<li>If the current class is <code>red</code>, when the user click on <code>DIV#toggle_header</code>, the class must be updated to <code>green</code> ; and the reverse.</li>
-<li>You can’t use <code>document.querySelector</code> to select the HTML tag</li>
-<li>You must use the jQuery API</li>
-</ul><p>Please test with this HTML file in your browser:</p>
+Please test with this HTML file in your browser:
 
+    
+    
+    guillaume@ubuntu:~/0x15$ cat 1-main.html 
+    <!DOCTYPE html>
+    <html lang="en">
+      <head>
+        <title>Holberton School</title>
+        <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+      </head>
+      <body>
+        <header> 
+          First HTML page
+        </header>
+        <footer>
+          Holberton School - 2017
+        </footer>
+        <script type="text/javascript" src="1-script.js"></script>
+      </body>
+    </html>
+    guillaume@ubuntu:~/0x15$ 
+    
 
-<h4 class="task">
-    5. List of elements
-      <span class="alert alert-warning mandatory-optional">
-        mandatory
-      </span>
-</h4><p>Write a Javascript script that adds a <code>LI</code> element to a list when the user clicks on the tag <code>DIV#add_item</code>:</p><ul>
-<li>The new element must be: <code>&lt;li&gt;Item&lt;/li&gt;</code></li>
-<li>The new element must be added to <code>UL.my_list</code></li>
-<li>You can’t use <code>document.querySelector</code> to select the HTML tag</li>
-<li>You must use the jQuery API</li>
-</ul><p>Please test with this HTML file in your browser:</p>
+**Repo:**
 
+  * GitHub repository: `holbertonschool-higher_level_programming`
+  * Directory: `0x15-javascript-web_jquery`
+  * File: `1-script.js`
 
-<h4 class="task">
-    6. Change the text
-      <span class="alert alert-warning mandatory-optional">
-        mandatory
-      </span>
-</h4><p>Write a Javascript script that updates the text of the HTML tag <code>HEADER</code> to “New Header!!!” when the user clicks on <code>DIV#update_header</code></p><ul>
-<li>You can’t use <code>document.querySelector</code> to select the HTML tag</li>
-<li>You must use the jQuery API</li>
-</ul><p>Please test with this HTML file in your browser:</p>
+##  2\. Click and turn red
 
+Write a Javascript script that updates the text color of the HTML tag `HEADER`
+to red (`#FF0000`) when the user clicks on the tag `DIV#red_header`:
 
-<h4 class="task">
-    7. Star wars character
-      <span class="alert alert-warning mandatory-optional">
-        mandatory
-      </span>
-</h4><p>Write a Javascript script that fetches and replaces the <code>name</code> of this URL: <code>https://swapi.co/api/people/5/?format=json</code></p><ul>
-<li>The name must be displayed in the HTML tag <code>DIV#character</code></li>
-<li>You can’t use <code>document.querySelector</code> to select the HTML tag</li>
-<li>You must use the jQuery API</li>
-</ul><p>Please test with this HTML file in your browser:</p>
+  * You can’t use `document.querySelector` to select the HTML tag
+  * You must use the jQuery API
 
+Please test with this HTML file in your browser:
 
-<h4 class="task">
-    8. Star Wars movies
-      <span class="alert alert-warning mandatory-optional">
-        mandatory
-      </span>
-</h4><p>Write a Javascript script that fetches and lists all movies <code>title</code> by using this URL: <code>https://swapi.co/api/films/?format=json</code></p><ul>
-<li>All movie titles must be list in the HTML tag <code>UL#list_movies</code></li>
-<li>You can’t use <code>document.querySelector</code> to select the HTML tag</li>
-<li>You must use the jQuery API</li>
-</ul><p>Please test with this HTML file in your browser:</p>
+    
+    
+    guillaume@ubuntu:~/0x15$ cat 2-main.html 
+    <!DOCTYPE html>
+    <html lang="en">
+      <head>
+        <title>Holberton School</title>
+        <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+      </head>
+      <body>
+        <header> 
+          First HTML page
+        </header>
+        <div id="red_header">Red header</div>
+        <footer>
+          Holberton School - 2017
+        </footer>
+        <script type="text/javascript" src="2-script.js"></script>
+      </body>
+    </html>
+    guillaume@ubuntu:~/0x15$ 
+    
 
+**Repo:**
 
-<h4 class="task">
-    9. Wind speed
-      <span class="alert alert-warning mandatory-optional">
-        mandatory
-      </span>
-</h4><p>Write a Javascript script that fetches and prints the San Francisco wind speed by using this URL: <code>https://query.yahooapis.com/v1/public/yql?q=select%20wind%20from%20weather.forecast%20where%20woeid%20in%20(select%20woeid%20from%20geo.places(1)%20where%20text%3D%22San%20Francisco%2C%20CA%22)&amp;format=json</code></p><ul>
-<li>The wind speed must be display in the HTML tag <code>DIV#sf_wind_speed</code></li>
-<li>You can’t use <code>document.querySelector</code> to select the HTML tag</li>
-<li>You must use the jQuery API
-You script must be work when it imported from the <code>HEAD</code> tag</li>
-</ul><p>Please test with this HTML file in your browser:</p>
+  * GitHub repository: `holbertonschool-higher_level_programming`
+  * Directory: `0x15-javascript-web_jquery`
+  * File: `2-script.js`
 
+##  3\. Add `.red` class
 
-<h4 class="task">
-    10. No jQuery - document loaded
-      <span class="alert alert-info mandatory-optional">
-        #advanced
-      </span>
-</h4><p>Write a Javascript script that updates the text color of the HTML tag <code>HEADER</code> to red (<code>#FF0000</code>):</p><ul>
-<li>You must use <code>document.querySelector</code> to select the HTML tag</li>
-<li>You can’t use the jQuery API</li>
-<li>You script must be work when it imported from the <code>HEAD</code> tag</li>
-</ul><p>Please test with this HTML file in your browser:</p>
+Write a Javascript script that adds the class `red` to the HTML tag `HEADER`
+to red (`#FF0000`) when the user clicks on the tag `DIV#red_header`:
 
+  * You can’t use `document.querySelector` to select the HTML tag
+  * You must use the jQuery API
 
-<h4 class="task">
-    11. List, add, remove
-      <span class="alert alert-info mandatory-optional">
-        #advanced
-      </span>
-</h4><p>Write a Javascript script that adds, removes and clears <code>LI</code> elements from a list when the user clicks:</p><ul>
-<li>The new element must be: <code>&lt;li&gt;Item&lt;/li&gt;</code></li>
-<li>The new element must be added to <code>UL.my_list</code></li>
-<li>When the user clicks on <code>DIV#add_item</code>: a new element is added to the list</li>
-<li>When the user clicks on <code>DIV#remove_item</code>: a last element is removed to the list</li>
-<li>When the user clicks on <code>DIV#clear_list</code>: all elements of the list are removed</li>
-<li>You can’t use <code>document.querySelector</code> to select the HTML tag</li>
-<li>You must use the jQuery API</li>
-<li>You script must be work when it imported from the <code>HEAD</code> tag</li>
-</ul><p>Please test with this HTML file in your browser:</p>
+Please test with this HTML file in your browser:
 
+    
+    
+    guillaume@ubuntu:~/0x15$ cat 3-main.html 
+    <!DOCTYPE html>
+    <html lang="en">
+      <head>
+        <title>Holberton School</title>
+        <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+        <style>
+          .red {
+            color: #FF0000;
+          }
+        </style>
+      </head>
+      <body>
+        <header> 
+          First HTML page
+        </header>
+        <div id="red_header">Red header</div>
+        <footer>
+          Holberton School - 2017
+        </footer>
+        <script type="text/javascript" src="3-script.js"></script>
+      </body>
+    </html>
+    guillaume@ubuntu:~/0x15$ 
+    
 
-<h4 class="task">
-    12. Search wind speed
-      <span class="alert alert-info mandatory-optional">
-        #advanced
-      </span>
-</h4><p>Write a Javascript script that fetches and prints the wind speed by using this URL: <code>https://query.yahooapis.com/v1/public/yql?q=select%20wind%20from%20weather.forecast%20where%20woeid%20in%20(select%20woeid%20from%20geo.places(1)%20where%20text%3D%22:city_name%22)&amp;format=json</code></p><ul>
-<li>The wind speed must be display in the HTML tag <code>DIV#wind_speed</code></li>
-<li>The city name must be the value of the tag <code>INPUT#city_search</code></li>
-<li>The wind speed must be fetch when the user clicks on <code>INPUT#btn_search</code></li>
-<li>You can’t use <code>document.querySelector</code> to select the HTML tag</li>
-<li>You must use the jQuery API</li>
-<li>You script must be work when it imported from the <code>HEAD</code> tag</li>
-</ul><p>Please test with this HTML file in your browser:</p>
+**Repo:**
 
+  * GitHub repository: `holbertonschool-higher_level_programming`
+  * Directory: `0x15-javascript-web_jquery`
+  * File: `3-script.js`
 
-<h4 class="task">
-    13. And press ENTER
-      <span class="alert alert-info mandatory-optional">
-        #advanced
-      </span>
-</h4><p>Write a Javascript script that fetches and prints the wind speed by using this URL: <code>https://query.yahooapis.com/v1/public/yql?q=select%20wind%20from%20weather.forecast%20where%20woeid%20in%20(select%20woeid%20from%20geo.places(1)%20where%20text%3D%22:city_name%22)&amp;format=json</code></p><ul>
-<li>The wind speed must be display in the HTML tag <code>DIV#wind_speed</code></li>
-<li>The city name must be the value of the tag <code>INPUT#city_search</code></li>
-<li>The wind speed must be fetch when the user clicks on <code>INPUT#btn_search</code> OR press <code>ENTER</code> when the focus is on <code>INPUT#city_search</code></li>
-<li>You can’t use <code>document.querySelector</code> to select the HTML tag</li>
-<li>You must use the jQuery API</li>
-<li>You script must be work when it imported from the <code>HEAD</code> tag</li>
-</ul><p>Please test with this HTML file in your browser:</p>
+##  4\. Toggle classes
+
+Write a Javascript script that toggles the class of the HTML tag `HEADER` to
+red (`#FF0000`) when the user clicks on the tag `DIV#toggle_header`:
+
+  * The `HEADER` tag must always have one class: `red` or `green`, never both in the same time, never empty.
+  * If the current class is `red`, when the user click on `DIV#toggle_header`, the class must be updated to `green` ; and the reverse.
+  * You can’t use `document.querySelector` to select the HTML tag
+  * You must use the jQuery API
+
+Please test with this HTML file in your browser:
+
+    
+    
+    guillaume@ubuntu:~/0x15$ cat 4-main.html 
+    <!DOCTYPE html>
+    <html lang="en">
+      <head>
+        <title>Holberton School</title>
+        <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+        <style>
+          .red {
+            color: #FF0000;
+          }
+          .green {
+            color: #00FF00;
+          }
+        </style>
+      </head>
+      <body>
+        <header class="green"> 
+          First HTML page
+        </header>
+        <div id="toggle_header">Toggle header</div>
+        <footer>
+          Holberton School - 2017
+        </footer>
+        <script type="text/javascript" src="4-script.js"></script>
+      </body>
+    </html>
+    guillaume@ubuntu:~/0x15$ 
+    
+
+**Repo:**
+
+  * GitHub repository: `holbertonschool-higher_level_programming`
+  * Directory: `0x15-javascript-web_jquery`
+  * File: `4-script.js`
+
+##  5\. List of elements
+
+Write a Javascript script that adds a `LI` element to a list when the user
+clicks on the tag `DIV#add_item`:
+
+  * The new element must be: `<li>Item</li>`
+  * The new element must be added to `UL.my_list`
+  * You can’t use `document.querySelector` to select the HTML tag
+  * You must use the jQuery API
+
+Please test with this HTML file in your browser:
+
+    
+    
+    guillaume@ubuntu:~/0x15$ cat 5-main.html 
+    <!DOCTYPE html>
+    <html lang="en">
+      <head>
+        <title>Holberton School</title>
+        <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+      </head>
+      <body>
+        <header> 
+          First HTML page
+        </header>
+        <br />
+        <div id="add_item">Add item</div>
+        <br />
+        <ul class="my_list">
+          <li>Item</li>
+        </ul>
+        <footer>
+          Holberton School - 2017
+        </footer>
+        <script type="text/javascript" src="5-script.js"></script>
+      </body>
+    </html>
+    guillaume@ubuntu:~/0x15$ 
+    
+
+**Repo:**
+
+  * GitHub repository: `holbertonschool-higher_level_programming`
+  * Directory: `0x15-javascript-web_jquery`
+  * File: `5-script.js`
+
+##  6\. Change the text
+
+Write a Javascript script that updates the text of the HTML tag `HEADER` to
+“New Header!!!” when the user clicks on `DIV#update_header`
+
+  * You can’t use `document.querySelector` to select the HTML tag
+  * You must use the jQuery API
+
+Please test with this HTML file in your browser:
+
+    
+    
+    guillaume@ubuntu:~/0x15$ cat 6-main.html 
+    <!DOCTYPE html>
+    <html lang="en">
+      <head>
+        <title>Holberton School</title>
+        <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+      </head>
+      <body>
+        <header> 
+          First HTML page
+        </header>
+        <br />
+        <div id="update_header">Update the header</div>
+        <br />
+        <footer>
+          Holberton School - 2017
+        </footer>
+        <script type="text/javascript" src="6-script.js"></script>
+      </body>
+    </html>
+    guillaume@ubuntu:~/0x15$ 
+    
+
+**Repo:**
+
+  * GitHub repository: `holbertonschool-higher_level_programming`
+  * Directory: `0x15-javascript-web_jquery`
+  * File: `6-script.js`
+
+##  7\. Star wars character
+
+Write a Javascript script that fetches and replaces the `name` of this URL:
+`https://swapi.co/api/people/5/?format=json`
+
+  * The name must be displayed in the HTML tag `DIV#character`
+  * You can’t use `document.querySelector` to select the HTML tag
+  * You must use the jQuery API
+
+Please test with this HTML file in your browser:
+
+    
+    
+    guillaume@ubuntu:~/0x15$ cat 7-main.html 
+    <!DOCTYPE html>
+    <html lang="en">
+      <head>
+        <title>Holberton School</title>
+        <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+      </head>
+      <body>
+        <header> 
+          Star Wars character
+        </header>
+        <br />
+        <div id="character"></div>
+        <br />
+        <footer>
+          Holberton School - 2017
+        </footer>
+        <script type="text/javascript" src="7-script.js"></script>
+      </body>
+    </html>
+    guillaume@ubuntu:~/0x15$ 
+    
+
+**Repo:**
+
+  * GitHub repository: `holbertonschool-higher_level_programming`
+  * Directory: `0x15-javascript-web_jquery`
+  * File: `7-script.js`
+
+##  8\. Star Wars movies
+
+Write a Javascript script that fetches and lists all movies `title` by using
+this URL: `https://swapi.co/api/films/?format=json`
+
+  * All movie titles must be list in the HTML tag `UL#list_movies`
+  * You can’t use `document.querySelector` to select the HTML tag
+  * You must use the jQuery API
+
+Please test with this HTML file in your browser:
+
+    
+    
+    guillaume@ubuntu:~/0x15$ cat 8-main.html 
+    <!DOCTYPE html>
+    <html lang="en">
+      <head>
+        <title>Holberton School</title>
+        <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+      </head>
+      <body>
+        <header> 
+          Star Wars movies
+        </header>
+        <br />
+        <ul id="list_movies">
+        </ul>
+        <br />
+        <footer>
+          Holberton School - 2017
+        </footer>
+        <script type="text/javascript" src="8-script.js"></script>
+      </body>
+    </html>
+    guillaume@ubuntu:~/0x15$ 
+    
+
+**Repo:**
+
+  * GitHub repository: `holbertonschool-higher_level_programming`
+  * Directory: `0x15-javascript-web_jquery`
+  * File: `8-script.js`
+
+##  9\. Wind speed
+
+Write a Javascript script that fetches and prints the San Francisco wind speed
+by using this URL:
+`https://query.yahooapis.com/v1/public/yql?q=select%20wind%20from%20weather.forecast%20where%20woeid%20in%20(select%20woeid%20from%20geo.places(1)%20where%20text%3D%22San%20Francisco%2C%20CA%22)&format=json`
+
+  * The wind speed must be display in the HTML tag `DIV#sf_wind_speed`
+  * You can’t use `document.querySelector` to select the HTML tag
+  * You must use the jQuery API You script must be work when it imported from the `HEAD` tag
+
+Please test with this HTML file in your browser:
+
+    
+    
+    guillaume@ubuntu:~/0x15$ cat 9-main.html 
+    <!DOCTYPE html>
+    <html lang="en">
+      <head>
+        <title>Holberton School</title>
+        <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+        <script type="text/javascript" src="9-script.js"></script>
+      </head>
+      <body>
+        <header> 
+          San Francisco - wind speed
+        </header>
+        <br />
+        <div id="sf_wind_speed"></div>
+        <br />
+        <footer>
+          Holberton School - 2017
+        </footer>
+      </body>
+    </html>
+    guillaume@ubuntu:~/0x15$ 
+    
+
+**Repo:**
+
+  * GitHub repository: `holbertonschool-higher_level_programming`
+  * Directory: `0x15-javascript-web_jquery`
+  * File: `9-script.js`
+
+##  10\. No jQuery - document loaded
+
+Write a Javascript script that updates the text color of the HTML tag `HEADER`
+to red (`#FF0000`):
+
+  * You must use `document.querySelector` to select the HTML tag
+  * You can’t use the jQuery API
+  * You script must be work when it imported from the `HEAD` tag
+
+Please test with this HTML file in your browser:
+
+    
+    
+    guillaume@ubuntu:~/0x15$ cat 100-main.html 
+    <!DOCTYPE html>
+    <html lang="en">
+      <head>
+        <title>Holberton School</title>
+        <script type="text/javascript" src="100-script.js"></script>
+      </head>
+      <body>
+        <header> 
+          First HTML page
+        </header>
+        <footer>
+          Holberton School - 2017
+        </footer>
+      </body>
+    </html>
+    guillaume@ubuntu:~/0x15$ 
+    
+
+**Repo:**
+
+  * GitHub repository: `holbertonschool-higher_level_programming`
+  * Directory: `0x15-javascript-web_jquery`
+  * File: `100-script.js`
+
+##  11\. List, add, remove
+
+Write a Javascript script that adds, removes and clears `LI` elements from a
+list when the user clicks:
+
+  * The new element must be: `<li>Item</li>`
+  * The new element must be added to `UL.my_list`
+  * When the user clicks on `DIV#add_item`: a new element is added to the list
+  * When the user clicks on `DIV#remove_item`: a last element is removed to the list
+  * When the user clicks on `DIV#clear_list`: all elements of the list are removed
+  * You can’t use `document.querySelector` to select the HTML tag
+  * You must use the jQuery API
+  * You script must be work when it imported from the `HEAD` tag
+
+Please test with this HTML file in your browser:
+
+    
+    
+    guillaume@ubuntu:~/0x15$ cat 101-main.html 
+    <!DOCTYPE html>
+    <html lang="en">
+      <head>
+        <title>Holberton School</title>
+        <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+        <script type="text/javascript" src="101-script.js"></script>
+      </head>
+      <body>
+        <header> 
+          First HTML page
+        </header>
+        <br />
+        <div id="add_item">Add item</div>
+        <div id="remove_item">Remove item</div>
+        <div id="clear_list">Clear list</div>
+        <br />
+        <ul class="my_list">
+          <li>Item</li>
+        </ul>
+        <footer>
+          Holberton School - 2017
+        </footer>
+      </body>
+    </html>
+    guillaume@ubuntu:~/0x15$ 
+    
+
+**Repo:**
+
+  * GitHub repository: `holbertonschool-higher_level_programming`
+  * Directory: `0x15-javascript-web_jquery`
+  * File: `101-script.js`
+
+##  12\. Search wind speed
+
+Write a Javascript script that fetches and prints the wind speed by using this
+URL:
+`https://query.yahooapis.com/v1/public/yql?q=select%20wind%20from%20weather.forecast%20where%20woeid%20in%20(select%20woeid%20from%20geo.places(1)%20where%20text%3D%22:city_name%22)&format=json`
+
+  * The wind speed must be display in the HTML tag `DIV#wind_speed`
+  * The city name must be the value of the tag `INPUT#city_search`
+  * The wind speed must be fetch when the user clicks on `INPUT#btn_search`
+  * You can’t use `document.querySelector` to select the HTML tag
+  * You must use the jQuery API
+  * You script must be work when it imported from the `HEAD` tag
+
+Please test with this HTML file in your browser:
+
+    
+    
+    guillaume@ubuntu:~/0x15$ cat 102-main.html 
+    <!DOCTYPE html>
+    <html lang="en">
+      <head>
+        <title>Holberton School</title>
+        <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+        <script type="text/javascript" src="102-script.js"></script>
+      </head>
+      <body>
+        <header> 
+          Wind speed
+        </header>
+        <br />
+        <input id="city_search" type="text" placeholder="City"/>
+        <input id="btn_search" type="button" value="Search"/>
+        <br />
+        <div id="wind_speed"></div>
+        <br />
+        <footer>
+          Holberton School - 2017
+        </footer>
+      </body>
+    </html>
+    guillaume@ubuntu:~/0x15$ 
+    
+
+**Repo:**
+
+  * GitHub repository: `holbertonschool-higher_level_programming`
+  * Directory: `0x15-javascript-web_jquery`
+  * File: `102-script.js`
+
+##  13\. And press ENTER
+
+Write a Javascript script that fetches and prints the wind speed by using this
+URL:
+`https://query.yahooapis.com/v1/public/yql?q=select%20wind%20from%20weather.forecast%20where%20woeid%20in%20(select%20woeid%20from%20geo.places(1)%20where%20text%3D%22:city_name%22)&format=json`
+
+  * The wind speed must be display in the HTML tag `DIV#wind_speed`
+  * The city name must be the value of the tag `INPUT#city_search`
+  * The wind speed must be fetch when the user clicks on `INPUT#btn_search` OR press `ENTER` when the focus is on `INPUT#city_search`
+  * You can’t use `document.querySelector` to select the HTML tag
+  * You must use the jQuery API
+  * You script must be work when it imported from the `HEAD` tag
+
+Please test with this HTML file in your browser:
+
+    
+    
+    guillaume@ubuntu:~/0x15$ cat 103-main.html 
+    <!DOCTYPE html>
+    <html lang="en">
+      <head>
+        <title>Holberton School</title>
+        <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+        <script type="text/javascript" src="103-script.js"></script>
+      </head>
+      <body>
+        <header> 
+          Wind speed
+        </header>
+        <br />
+        <input id="city_search" type="text" placeholder="City"/>
+        <input id="btn_search" type="button" value="Search"/>
+        <br />
+        <div id="wind_speed"></div>
+        <br />
+        <footer>
+          Holberton School - 2017
+        </footer>
+      </body>
+    </html>
+    guillaume@ubuntu:~/0x15$ 
+    
+
+**Repo:**
+
+  * GitHub repository: `holbertonschool-higher_level_programming`
+  * Directory: `0x15-javascript-web_jquery`
+  * File: `103-script.js`
 
